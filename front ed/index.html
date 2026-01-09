@@ -1,39 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Proyecto Final</title>
-    <!--
+    <title>Bienvenido a ArquiData</title>
 
-    Template 2108 Dashboard
-
-	http://www.tooplate.com/view/2108-dashboard
-
-    -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
-    <!-- https://fonts.google.com/specimen/Open+Sans -->
-    <link rel="stylesheet" href="css/fontawesome.min.css">
-    <!-- https://fontawesome.com/ -->
-    <link rel="stylesheet" href="css/fullcalendar.min.css">
-    <!-- https://fullcalendar.io/ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="css/tooplate.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body id="reportsPage">
-    <div class="" id="home">
+    <div id="home">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <nav class="navbar navbar-expand-xl navbar-light bg-light">
-                        <a class="navbar-brand" href="#">
-                            <i class="fas fa-3x fa-tachometer-alt tm-site-icon"></i>
-                            <h1 class="tm-site-title mb-0">Dashboard</h1>
+
+                    <nav class="navbar navbar-expand-xl navbar-dark"
+                        style="background-color: #003366; border-radius: 15px;">
+
+                        <a class="navbar-brand" href="index.html">
+                            <img src="img/logo-titulo.png" alt="Logo ArquiData" class="logo-header">
                         </a>
+
                         <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -43,53 +35,37 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mx-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#">Dashboard
-                                        <span class="sr-only">(current)</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Reports
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#">Daily Report</a>
-                                        <a class="dropdown-item" href="#">Weekly Report</a>
-                                        <a class="dropdown-item" href="#">Yearly Report</a>
-                                    </div>
+                                    <a class="nav-link active" href="#">Inicio</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="products.html">Products</a>
+                                    <a class="nav-link" href="#quienes-somos">Quiénes Somos</a>
                                 </li>
-
                                 <li class="nav-item">
-                                    <a class="nav-link" href="accounts.html">Accounts</a>
+                                    <a class="nav-link" href="#servicios">Servicios</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Settings
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#">Profile</a>
-                                        <a class="dropdown-item" href="#">Billing</a>
-                                        <a class="dropdown-item" href="#">Customize</a>
-
-                                    </div>
-
-
+                                <li class="nav-item">
+                                    <a class="nav-link" href="contact.html">Contacto</a>
                                 </li>
-
                             </ul>
-
-
+                            <ul class="navbar-nav mr-3">
+                                <li class="nav-item d-flex align-items-center">
+                                    <div class="theme-container">
+                                        <input type="checkbox" name="theme-toggle" id="theme-toggle" />
+                                        <label for="theme-toggle" class="theme-switch-label"> </label>
+                                    </div>
+                                </li>
+                            </ul>
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-
-
-                                    <a class="nav-link d-flex" href="login.html">
-                                        <i class="far fa-user mr-2 tm-logout-icon"></i>
-                                        <span>Logout</span>
+                                    <a class="nav-link d-flex align-items-center" href="register.html">
+                                        <i class="fas fa-user-plus mr-2"></i>
+                                        <span>Registrarse</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex align-items-center" href="login.html">
+                                        <i class="fas fa-sign-in-alt mr-2"></i>
+                                        <span>Iniciar Sesión</span>
                                     </a>
                                 </li>
                             </ul>
@@ -97,144 +73,119 @@
                     </nav>
                 </div>
             </div>
-            <!-- row -->
+
             <div class="row tm-content-row tm-mt-big">
-                <div class="tm-col tm-col-big">
-                    <div class="bg-white tm-block h-100">
-                        <h2 class="tm-block-title">Latest Hits</h2>
-                        <canvas id="lineChart"></canvas>
-                    </div>
-                </div>
-                <div class="tm-col tm-col-big">
-                    <div class="bg-white tm-block h-100">
-                        <h2 class="tm-block-title">Performance</h2>
-                        <canvas id="barChart"></canvas>
-                    </div>
-                </div>
-                <div class="tm-col tm-col-small">
-                    <div class="bg-white tm-block h-100">
-                        <canvas id="pieChart" class="chartjs-render-monitor"></canvas>
-                    </div>
-                </div>
-
-                <div class="tm-col tm-col-big">
-                    <div class="bg-white tm-block h-100">
-                        <div class="row">
-                            <div class="col-8">
-                                <h2 class="tm-block-title d-inline-block">Top Product List</h2>
-
-                            </div>
-                            <div class="col-4 text-right">
-                                <a href="products.html" class="tm-link-black">View All</a>
-                            </div>
-                        </div>
-                        <ol class="tm-list-group tm-list-group-alternate-color tm-list-group-pad-big">
-                            <li class="tm-list-group-item">
-                                Donec eget libero
-                            </li>
-                            <li class="tm-list-group-item">
-                                Nunc luctus suscipit elementum
-                            </li>
-                            <li class="tm-list-group-item">
-                                Maecenas eu justo maximus
-                            </li>
-                            <li class="tm-list-group-item">
-                                Pellentesque auctor urna nunc
-                            </li>
-                            <li class="tm-list-group-item">
-                                Sit amet aliquam lorem efficitur
-                            </li>
-                            <li class="tm-list-group-item">
-                                Pellentesque auctor urna nunc
-                            </li>
-                            <li class="tm-list-group-item">
-                                Sit amet aliquam lorem efficitur
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="tm-col tm-col-big">
-                    <div class="bg-white tm-block h-100">
-                        <h2 class="tm-block-title">Calendar</h2>
-                        <div id="calendar"></div>
-                        <div class="row mt-4">
-                            <div class="col-12 text-right">
-                                <a href="#" class="tm-link-black">View Schedules</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="tm-col tm-col-small">
-                    <div class="bg-white tm-block h-100">
-                        <h2 class="tm-block-title">Upcoming Tasks</h2>
-                        <ol class="tm-list-group">
-                            <li class="tm-list-group-item">List of tasks</li>
-                            <li class="tm-list-group-item">Lorem ipsum doloe</li>
-                            <li class="tm-list-group-item">Read reports</li>
-                            <li class="tm-list-group-item">Write email</li>
-
-                            <li class="tm-list-group-item">Call customers</li>
-                            <li class="tm-list-group-item">Go to meeting</li>
-                            <li class="tm-list-group-item">Weekly plan</li>
-                            <li class="tm-list-group-item">Ask for feedback</li>
-
-                            <li class="tm-list-group-item">Meet Supervisor</li>
-                            <li class="tm-list-group-item">Company trip</li>
-                        </ol>
+                <div class="col-12 tm-col">
+                    <div class="tm-block tm-block-h-auto text-center" data-aos="zoom-in">
+                        <h2 class="tm-block-title">Digitaliza tu Estudio de Arquitectura</h2>
+                        <p class="mb-4">
+                            Bienvenido a <strong>ArquiData</strong>. La plataforma definitiva para gestionar planos,
+                            proyectos y documentación técnica de forma segura y accesible desde cualquier lugar.
+                        </p>
+                        <a href="register.html" class="animated-button">
+                            <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                                </path>
+                            </svg>
+                            <span class="text">Comenzar Ahora</span>
+                            <span class="circle"></span>
+                            <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                                </path>
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </div>
-            <footer class="row tm-mt-small">
+
+            <div class="row tm-content-row" id="quienes-somos">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-col">
+                    <div class="tm-block" data-aos="fade-right">
+                        <div class="tm-product-img-dummy"
+                            style="width: 100%; height: 300px; background-image: url('img/dash-bg-02.jpg'); background-size: cover; border-radius: 10px;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-col">
+                    <div class="tm-block" data-aos="fade-left">
+                        <h2 class="tm-block-title">Quiénes Somos</h2>
+                        <p>
+                            En ArquiData somos un equipo apasionado por la arquitectura y la tecnología.
+                            Nacimos con un objetivo claro: eliminar el caos del papel y los archivos desordenados.
+                        </p>
+                        <p>
+                            Entendemos las necesidades de los arquitectos modernos. Por eso, hemos creado un entorno
+                            digital donde la <strong>eficiencia</strong> y la <strong>organización</strong> son la
+                            prioridad.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row tm-content-row" id="servicios">
+                <div class="col-12 tm-col">
+                    <div class="tm-block tm-block-h-auto">
+                        <h2 class="tm-block-title text-center mb-5" data-aos="fade-down">Qué Hacemos por Ti</h2>
+
+                        <div class="row text-center">
+                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                                <i class="fas fa-layer-group fa-4x mb-3" style="color: #003366;"></i>
+                                <h4 class="mb-3">Gestión de Planos</h4>
+                                <p>Sube, organiza y versiona tus planos en formatos CAD y PDF. Mantén todo ordenado por
+                                    proyecto.</p>
+                            </div>
+
+                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                                <i class="fas fa-cloud-upload-alt fa-4x mb-3" style="color: #003366;"></i>
+                                <h4 class="mb-3">Acceso en la Nube</h4>
+                                <p>Accede a tu documentación desde la obra, la oficina o tu casa. Tu estudio siempre
+                                    contigo.</p>
+                            </div>
+
+                            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                                <i class="fas fa-users-cog fa-4x mb-3" style="color: #003366;"></i>
+                                <h4 class="mb-3">Colaboración</h4>
+                                <p>Comparte proyectos con clientes y colaboradores de forma segura y controlada.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="tm-footer row tm-mt-small">
                 <div class="col-12 font-weight-light">
-                    <p class="d-inline-block tm-bg-black text-white py-2 px-4">
-                        Copyright &copy; 2018 Admin Dashboard . Created by
-                        <a rel="nofollow" href="https://www.tooplate.com" class="text-white tm-footer-link">Tooplate</a>
+                    <p class="text-center text-white mb-0 px-4 small">
+                        Copyright &copy; <b>2026</b> ArquiData. Todos los derechos reservados.
                     </p>
                 </div>
             </footer>
         </div>
     </div>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <!-- https://jquery.com/download/ -->
-    <script src="js/moment.min.js"></script>
-    <!-- https://momentjs.com/ -->
-    <script src="js/utils.js"></script>
-    <script src="js/Chart.min.js"></script>
-    <!-- http://www.chartjs.org/docs/latest/ -->
-    <script src="js/fullcalendar.min.js"></script>
-    <!-- https://fullcalendar.io/ -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- https://getbootstrap.com/ -->
-    <script src="js/tooplate-scripts.js"></script>
-    <script>
-        let ctxLine,
-            ctxBar,
-            ctxPie,
-            optionsLine,
-            optionsBar,
-            optionsPie,
-            configLine,
-            configBar,
-            configPie,
-            lineChart;
-        barChart, pieChart;
-        // DOM is ready
-        $(function () {
-            updateChartOptions();
-            drawLineChart(); // Line Chart
-            drawBarChart(); // Bar Chart
-            drawPieChart(); // Pie Chart
-            drawCalendar(); // Calendar
 
-            $(window).resize(function () {
-                updateChartOptions();
-                updateLineChart();
-                updateBarChart();
-                reloadPage();
-            });
-        })
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
     </script>
+    <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    themeToggle.addEventListener('change', function() {
+        if (this.checked) {
+            body.classList.add('dark-mode'); // Si activas -> MODO OSCURO
+        } else {
+            body.classList.remove('dark-mode'); // Si desactivas -> MODO CLARO 
+        }
+    });
+</script>
 </body>
 
 </html>
