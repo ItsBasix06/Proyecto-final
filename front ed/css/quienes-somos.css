@@ -1,0 +1,132 @@
+
+.team-img-container {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #e9ecef;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.team-member:hover .team-img-container {
+    border-color: #003366;
+    transform: scale(1.05);
+}
+
+.team-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.about-intro-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    text-align: justify;
+}
+
+.about-highlight {
+    background-color: #f0f4f8;
+    border-left: 5px solid #003366;
+    padding: 20px;
+    margin: 30px 0;
+    font-style: italic;
+    color: #333;
+    border-radius: 0 10px 10px 0;
+}
+
+
+.value-item {
+    text-align: center;
+    padding: 20px 10px;
+    transition: transform 0.3s;
+}
+
+.value-item:hover {
+    transform: translateY(-5px);
+}
+
+.value-icon {
+    font-size: 3rem;
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.value-title {
+    font-weight: 700;
+    color: #003366;
+    margin-bottom: 10px;
+}
+
+
+.social-links-team a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    background: #f0f4f8;
+    color: #003366;
+    border-radius: 50%;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+}
+
+.social-links-team a:hover {
+    background: #003366;
+    color: #fff;
+    text-decoration: none;
+}
+
+body.dark-mode .about-intro-text {
+    color: #e0e0e0;
+}
+
+body.dark-mode .about-highlight {
+    background-color: #002244;
+    color: #fff;
+    border-left-color: #73C0FC;
+}
+
+body.dark-mode .team-img-container {
+    border-color: #002244;
+}
+
+body.dark-mode .team-member:hover .team-img-container {
+    border-color: #73C0FC;
+}
+
+body.dark-mode .value-icon,
+body.dark-mode .value-title,
+body.dark-mode .social-links-team a {
+    color: #73C0FC;
+}
+
+body.dark-mode .social-links-team a:hover {
+    background: #73C0FC;
+    color: #001529;
+}
+.hero-team-img {
+    border-radius: 25px; 
+    box-shadow: 0 15px 35px rgba(0, 51, 102, 0.25);
+    max-height: 450px;
+    width: auto;
+    object-fit: cover;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.hero-team-img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 51, 102, 0.35);
+}
+
+@media (max-width: 991px) {
+    .hero-team-img {
+        max-height: 300px;
+        border-radius: 15px;
+        width: 100%;
+    }
+}
