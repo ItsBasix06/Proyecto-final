@@ -77,8 +77,14 @@ WSGI_APPLICATION = 'proyecto_planos.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': (
+            '(DESCRIPTION='
+            '(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))'
+            '(CONNECT_DATA=(SERVICE_NAME=FREEPDB1))'
+        ),
+        'USER': 'admin',
+        'PASSWORD': '1528Jav992#$',
     }
 }
 
