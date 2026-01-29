@@ -122,6 +122,11 @@ body.dark-mode .social-links-team a:hover {
     transform: translateY(-5px);
     box-shadow: 0 20px 40px rgba(0, 51, 102, 0.35);
 }
+.navbar-nav .nav-item.active .nav-link {
+    color: #ffffff !important;
+    font-weight: 700;
+    border-bottom: 2px solid #ffffff;
+}
 
 @media (max-width: 991px) {
     .hero-team-img {

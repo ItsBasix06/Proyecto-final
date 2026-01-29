@@ -1255,7 +1255,11 @@ body.dark-mode .animated-button:hover svg {
 body.dark-mode .animated-button .circle {
   background-color: #ffffff !important;
 }
-
+.navbar-nav .nav-item.active .nav-link {
+    color: #ffffff !important;
+    font-weight: 700;
+    border-bottom: 2px solid #ffffff;
+}
 @media (min-width: 992px) {
   .navbar-expand-lg .navbar-nav .nav-link {
     padding: 15px 20px;
