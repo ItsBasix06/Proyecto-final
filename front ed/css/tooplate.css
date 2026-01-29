@@ -495,32 +495,168 @@ input[type="checkbox"]:focus {
 }
 
 #footer {
-  background-color: #003366;
+  background: linear-gradient(170deg, #002244 0%, #003366 100%);
   color: #ffffff;
-  font-size: 14px;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  font-size: 15px;
+  padding-top: 60px;
+  padding-bottom: 30px;
   margin-top: auto;
-  border-top: 4px solid #002244;
   width: 100vw;
   position: relative;
   left: 50%;
   right: 50%;
   margin-left: -50vw;
+  box-shadow: 0 -10px 20px rgba(0,0,0,0.1);
+}
+
+.footer-top-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #003366 0%, #4da2c7 50%, #003366 100%);
 }
 
 #footer .logo .sitename {
-  font-size: 30px;
+  font-size: 32px;
   margin: 0;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 1px;
   color: #ffffff;
   font-family: "Open Sans", sans-serif;
+  text-transform: uppercase;
+  background: -webkit-linear-gradient(#fff, #aabadd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 #footer p {
+  color: #b0c4de;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+#footer h4 {
+  font-size: 18px;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+#footer h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 40px;
+  background-color: #4da2c7;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links ul li {
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+}
+
+.footer-links ul a {
+  color: #b0c4de;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.footer-links ul a:hover {
+  color: #ffffff;
+  transform: translateX(8px);
+  text-shadow: 0 0 5px rgba(255,255,255,0.5);
+}
+
+.newsletter-form {
+  position: relative;
   margin-top: 15px;
-  color: #dceaff;
+}
+
+.newsletter-form input {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-radius: 4px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.newsletter-form input:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #4da2c7;
+}
+
+.newsletter-form button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border: none;
+  background: #4da2c7;
+  color: #003366;
+  padding: 0 15px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.newsletter-form button:hover {
+  background: #fff;
+}
+
+.copyright {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 25px;
+  margin-top: 40px;
+}
+
+.copyright-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  color: #8a9bb5;
+  font-size: 14px;
+}
+
+.legal-links a {
+  color: #8a9bb5;
+  margin-left: 20px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.legal-links a:hover {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .copyright-content {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .legal-links a {
+    margin: 0 10px;
+  }
 }
 
 .social-links a {
@@ -537,48 +673,14 @@ input[type="checkbox"]:focus {
   transition: 0.3s;
 }
 
-.social-links a:hover {
-  color: #003366;
-  background-color: #ffffff;
-  border-color: #ffffff;
-}
-
-#footer h4 {
-  font-size: 16px;
-  font-weight: bold;
-  position: relative;
-  padding-bottom: 12px;
-  color: #ffffff;
-}
-
-.footer-links ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-links ul li {
-  padding: 10px 0;
+.wrapper .icon {
   display: flex;
+  justify-content: center;
   align-items: center;
-}
-
-.footer-links ul li:first-child {
-  padding-top: 0;
-}
-
-.footer-links ul a {
-  color: #dceaff;
-  transition: 0.3s;
-  display: inline-block;
-  line-height: 1;
-  text-decoration: none;
-}
-
-.footer-links ul a:hover {
-  color: #ffffff;
-  padding-left: 5px;
-  font-weight: 600;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
 }
 
 .wrapper.social-custom-list {
@@ -624,6 +726,7 @@ input[type="checkbox"]:focus {
   fill: currentColor;
   pointer-events: none;
   display: block;
+  fill: white;
 }
 
 .wrapper .tooltip {
