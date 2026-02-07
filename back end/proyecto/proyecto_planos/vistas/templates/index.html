@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,15 +9,20 @@
     <title>Bienvenido a ArquiData</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-    <link rel="stylesheet" href="{% static 'vistas/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'vistas/tooplate.css' %}">
-
+    
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tooplate.css' %}">
+    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="shortcut icon" href="{% static 'vistas/logo-favicon.ico' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'img/logo-favicon.ico' %}" type="image/x-icon">
 </head>
 
 <body id="reportsPage">
+    <div id="loader-wrapper">
+        <svg viewBox="25 25 50 50" class="loader-svg">
+            <circle r="20" cy="50" cx="50"></circle>
+        </svg>
+    </div>
     <div id="home">
         <div class="container">
             <div class="row">
@@ -26,7 +32,7 @@
                         style="background-color: #003366; border-radius: 15px;">
 
                         <a class="navbar-brand" href="index.html">
-                            <img src="img/logo-titulo.png" alt="Logo ArquiData" class="logo-header">
+                            <img src="{% static 'img/logo-titulo.png' %}" alt="Logo ArquiData" class="logo-header">
                         </a>
 
                         <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
@@ -37,20 +43,25 @@
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mx-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="#">Inicio</a>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="index.html">
+                                        <i class="fas fa-home mr-2"></i>Inicio
+                                    </a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#quienes-somos">Quiénes Somos</a>
+                                    <a class="nav-link" href="quienes-somos.html">
+                                        <i class="fas fa-users mr-2"></i>Quiénes Somos
+                                    </a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#servicios">Servicios</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Contacto</a>
+                                    <a class="nav-link" href="#servicios">
+                                        <i class="fas fa-briefcase mr-2"></i>Servicios
+                                    </a>
                                 </li>
                             </ul>
-
+                            
                             <ul class="navbar-nav">
                                 <li class="nav-item custom-btn-item">
                                     <a href="register.html" class="nav-link custom-btn-link">
@@ -139,7 +150,7 @@
                 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-col">
                     <div class="tm-block" data-aos="fade-right">
                         <div class="tm-product-img-dummy"
-                            style="width: 100%; height: 300px; background-image: url('img/img-index-sin-login.png'); background-size: cover; background-position: center; border-radius: 10px;">
+                            style="width: 100%; height: 300px; background-image: url('{% static 'vistas/img-index-sin-login.png' %}'); background-size: cover; background-position: center; border-radius: 10px;">
                         </div>
                     </div>
                 </div>
@@ -156,6 +167,14 @@
                             digital donde la <strong>eficiencia</strong> y la <strong>organización</strong> son la
                             prioridad.
                         </p>
+                        <div class="mt-4">
+                            <a href="quienes-somos.html" class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">Leer más</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -191,99 +210,83 @@
             </div>
 
             <footer id="footer" class="footer position-relative">
-                <div class="container">
-                    <div class="row gy-4">
+                <div class="footer-top-border"></div>
 
-                        <div class="col-lg-5 col-md-12 footer-info">
-                            <a href="index.html" class="logo d-flex align-items-center">
+                <div class="container">
+                    <div class="row gy-5">
+
+                        <div class="col-lg-4 col-md-12 footer-about">
+                            <a href="index.html" class="logo d-flex align-items-center mb-3">
                                 <span class="sitename">ArquiData</span>
                             </a>
-                            <p>La plataforma definitiva para arquitectos. Gestiona planos, proyectos y documentación
-                                técnica de forma segura, accesible y colaborativa desde cualquier lugar.</p>
+                            <p>
+                                Transformamos la gestión arquitectónica. Seguridad, eficiencia y diseño unidos en una
+                                sola plataforma en la nube.
+                            </p>
                             <div class="social-links d-flex mt-4">
                                 <ul class="wrapper social-custom-list">
                                     <li class="icon facebook">
                                         <span class="tooltip">Facebook</span>
-                                        <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-                                            <svg viewBox="0 0 320 512" height="1.2em" fill="currentColor"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z">
-                                                </path>
-                                            </svg>
-                                        </a>
+                                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                     </li>
-
                                     <li class="icon twitter">
                                         <span class="tooltip">Twitter</span>
-                                        <a href="https://twitter.com" target="_blank" aria-label="Twitter">
-                                            <svg height="1.8em" fill="currentColor" viewBox="0 0 48 48"
-                                                xmlns="http://www.w3.org/2000/svg" class="twitter">
-                                                <path
-                                                    d="M42,12.429c-1.323,0.586-2.746,0.977-4.247,1.162c1.526-0.906,2.7-2.351,3.251-4.058c-1.428,0.837-3.01,1.452-4.693,1.776C34.967,9.884,33.05,9,30.926,9c-4.08,0-7.387,3.278-7.387,7.32c0,0.572,0.067,1.129,0.193,1.67c-6.138-0.308-11.582-3.226-15.224-7.654c-0.64,1.082-1,2.349-1,3.686c0,2.541,1.301,4.778,3.285,6.096c-1.211-0.037-2.351-0.374-3.349-0.914c0,0.022,0,0.055,0,0.086c0,3.551,2.547,6.508,5.923,7.181c-0.617,0.169-1.269,0.263-1.941,0.263c-0.477,0-0.942-0.054-1.392-0.135c0.94,2.902,3.667,5.023,6.898,5.086c-2.528,1.96-5.712,3.134-9.174,3.134c-0.598,0-1.183-0.034-1.761-0.104C9.268,36.786,13.152,38,17.321,38c13.585,0,21.017-11.156,21.017-20.834c0-0.317-0.01-0.633-0.025-0.945C39.763,15.197,41.013,13.905,42,12.429">
-                                                </path>
-                                            </svg>
-                                        </a>
+                                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
                                     </li>
-
                                     <li class="icon instagram">
                                         <span class="tooltip">Instagram</span>
-                                        <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" fill="currentColor"
-                                                class="bi bi-instagram" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z">
-                                                </path>
-                                            </svg>
-                                        </a>
+                                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
 
                         <div class="col-lg-2 col-6 footer-links">
-                            <h4>Enlaces Útiles</h4>
+                            <h4>Explora</h4>
                             <ul>
-                                <li><a href="#">Inicio</a></li>
-                                <li><a href="#quienes-somos">Quiénes Somos</a></li>
-                                <li><a href="#">Servicios</a></li>
-                                <li><a href="#">Contacto</a></li>
-                                <li><a href="#">Política de Privacidad</a></li>
+                                <li><a href="index.html">Inicio</a></li>
+                                <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+                                <li><a href="#servicios">Servicios</a></li>
                             </ul>
                         </div>
 
-                        <div class="col-lg-2 col-6 footer-links">
-                            <h4>Funcionalidades</h4>
-                            <ul>
-                                <li><a href="#">Gestión de Planos</a></li>
-                                <li><a href="#">Almacenamiento Cloud</a></li>
-                                <li><a href="#">Trabajo Colaborativo</a></li>
-                                <li><a href="#">Seguridad de Datos</a></li>
-                                <li><a href="#">Control de Versiones</a></li>
-                            </ul>
+                        <div class="col-lg-3 col-6 footer-newsletter">
+                            <h4>Novedades</h4>
+                            <p>Suscríbete para recibir actualizaciones de la plataforma.</p>
+                            <form action="#" class="newsletter-form">
+                                <input type="email" placeholder="Tu email corporativo">
+                                <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                            </form>
                         </div>
 
-                        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-                            <h4>Contáctanos</h4>
-                            <p>Calle Arquitectura, 123</p>
-                            <p>Madrid, España</p>
-                            <p class="mt-4"><strong>Teléfono:</strong> <span>+34 600 00 00 00</span></p>
-                            <p><strong>Email:</strong> <span>info@arquidata.com</span></p>
+                        <div class="col-lg-3 col-md-12 footer-contact">
+                            <h4>Contacto</h4>
+                            <p>
+                                <strong><i class="fas fa-map-marker-alt mr-2"></i></strong> Avnd. Los Institutos S/N<br>
+                                Alcazar de San Juan, España
+                            </p>
+                            <p>
+                                <strong><i class="fas fa-phone mr-2"></i></strong> +34 633 55 13 46<br>
+                                <strong><i class="fas fa-envelope mr-2"></i></strong> info@arquidata.com
+                            </p>
                         </div>
 
                     </div>
                 </div>
 
-                <div class="container copyright text-center mt-4">
-                    <p>© <span>Copyright</span> <strong class="sitename">ArquiData</strong> <span>Todos los derechos
-                            reservados</span></p>
+                <div class="container copyright text-center mt-5">
+                    <div class="copyright-content">
+                        <p>© 2026 <strong class="sitename">ArquiData</strong>. Todos los derechos reservados.</p>
+                        <p> <a style="color: #003366" href="index-admin.html">admin</a></p>
+                    </div>
                 </div>
             </footer>
         </div>
     </div>
 
-    <script src="{% static 'vistas/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'vistas/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
@@ -297,10 +300,19 @@
 
         themeToggle.addEventListener('change', function () {
             if (this.checked) {
-                body.classList.add('dark-mode'); // Si activas -> MODO OSCURO
+                body.classList.add('dark-mode'); 
             } else {
-                body.classList.remove('dark-mode'); // Si desactivas -> MODO CLARO 
+                body.classList.remove('dark-mode'); 
             }
+        });
+
+
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                const loader = document.getElementById('loader-wrapper');
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }, 1200);
         });
     </script>
 </body>

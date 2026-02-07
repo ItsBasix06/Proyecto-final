@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quiénes Somos - ArquiData</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/tooplate.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/logo-favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/quienes-somos.css">
+</head>
+
+<body id="aboutPage">
+    <div id="loader-wrapper">
+        <svg viewBox="25 25 50 50" class="loader-svg">
+            <circle r="20" cy="50" cx="50"></circle>
+        </svg>
+    </div>
+
+    <div id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-xl navbar-dark"
+                        style="background-color: #003366; border-radius: 15px;">
+
+                        <a class="navbar-brand" href="index.html">
+                            <img src="img/logo-titulo.png" alt="Logo ArquiData" class="logo-header">
+                        </a>
+
+                        <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mx-auto">
+                                <ul class="navbar-nav mx-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="index.html">
+                                            <i class="fas fa-home mr-2"></i>Inicio
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="quienes-somos.html">
+                                            <i class="fas fa-users mr-2"></i>Quiénes Somos
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="index.html#servicios">
+                                            <i class="fas fa-briefcase mr-2"></i>Servicios
+                                        </a>
+                                    </li>
+                                </ul>
+                            </ul>
+
+                            <ul class="navbar-nav">
+                                <li class="nav-item custom-btn-item">
+                                    <a href="register.html" class="nav-link custom-btn-link">
+                                        <div class="user-profile">
+                                            <div class="user-profile-inner">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    fill="currentColor">
+                                                    <path
+                                                        d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                                                </svg>
+                                                <p>Registro</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item custom-btn-item">
+                                    <a href="login.html" class="nav-link custom-btn-link">
+                                        <div class="user-profile">
+                                            <div class="user-profile-inner">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                    <g data-name="Layer 2" id="Layer_2">
+                                                        <path
+                                                            d="m15.626 11.769a6 6 0 1 0 -7.252 0 9.008 9.008 0 0 0 -5.374 8.231 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 9.008 9.008 0 0 0 -5.374-8.231zm-7.626-4.769a4 4 0 1 1 4 4 4 4 0 0 1 -4-4zm10 14h-12a1 1 0 0 1 -1-1 7 7 0 0 1 14 0 1 1 0 0 1 -1 1z">
+                                                        </path>
+                                                    </g>
+                                                </svg>
+                                                <p>Ingresar</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <li class="nav-item d-flex align-items-center">
+                                <label class="switch">
+                                    <span class="sun"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <g fill="#ffd43b">
+                                                <circle r="5" cy="12" cx="12"></circle>
+                                                <path
+                                                    d="m21 13h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm-17 0h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm13.66-5.66a1 1 0 0 1 -.66-.29 1 1 0 0 1 0-1.41l.71-.71a1 1 0 1 1 1.41 1.41l-.71.71a1 1 0 0 1 -.75.29zm-12.02 12.02a1 1 0 0 1 -.71-.29 1 1 0 0 1 0-1.41l.71-.66a1 1 0 0 1 1.41 1.41l-.71.71a1 1 0 0 1 -.7.24zm6.36-14.36a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm0 17a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm-5.66-14.66a1 1 0 0 1 -.7-.29l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.29zm12.02 12.02a1 1 0 0 1 -.7-.29l-.66-.71a1 1 0 0 1 1.36-1.36l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.24z">
+                                                </path>
+                                            </g>
+                                        </svg></span>
+                                    <span class="moon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                            <path
+                                                d="m223.5 32c-123.5 0-223.5 100.3-223.5 224s100 224 223.5 224c60.6 0 115.5-24.2 155.8-63.4 5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6-96.9 0-175.5-78.8-175.5-176 0-65.8 36-123.1 89.3-153.3 6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z">
+                                            </path>
+                                        </svg></span>
+                                    <input type="checkbox" class="input" id="theme-toggle">
+                                    <span class="slider"></span>
+                                </label>
+                            </li>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="row tm-content-row tm-mt-big">
+                <div class="col-12 tm-col">
+                    <div class="tm-block tm-block-h-auto" data-aos="fade-up">
+                        <h2 class="tm-block-title">Nuestra Historia y Misión</h2>
+                        <div class="row mt-4 align-items-center">
+                            <div class="col-lg-7">
+                                <p>
+                                    En ArquiData, creemos que la arquitectura es un arte que no debe verse frenado por
+                                    la burocracia.
+                                    Fundada en 2024, nuestra plataforma nació como respuesta a una necesidad clara que
+                                    detectamos en el sector:
+                                    <b>la desconexión entre el diseño creativo y la gestión administrativa.</b>
+                                </p>
+                                <p>
+                                    Comenzamos observando cómo grandes estudios perdían horas valiosas buscando la
+                                    última versión de un plano
+                                    o intentando coordinar cambios con ingenieros y clientes a través de correos
+                                    electrónicos dispersos.
+                                    Decidimos crear un entorno donde la <strong>centralización</strong> fuera la norma.
+                                </p>
+                                <blockquote class="blockquote border-left pl-4"
+                                    style="border-left: 5px solid #003366; color: #003366; font-style: italic;">
+                                    "Transformamos la complejidad administrativa en simplicidad visual, para que tú
+                                    puedas dedicarte a lo que mejor sabes hacer: diseñar."
+                                </blockquote>
+                                <p>
+                                    Hoy, ayudamos a cientos de estudios a optimizar sus flujos de trabajo, garantizando
+                                    seguridad,
+                                    rapidez y accesibilidad desde cualquier dispositivo, ya sea en la oficina o a pie de
+                                    obra.
+                                </p>
+                            </div>
+
+                            <div class="col-lg-5 text-center position-relative">
+                                <div class="team-blob"></div>
+                                <img src="img/basi-david-javi.png" alt="Equipo Fundador ArquiData"
+                                    class="img-fluid hero-team-img" data-aos="fade-left">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row tm-content-row">
+                <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-col">
+                    <div class="tm-block tm-block-h-auto text-center" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-rocket fa-4x mb-4" style="color: #003366;"></i>
+                        <h3 class="mb-3">Eficiencia</h3>
+                        <p>Reducimos los tiempos de gestión administrativa hasta en un 40%, permitiendo una búsqueda y
+                            organización instantánea de archivos CAD y PDF.</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-col">
+                    <div class="tm-block tm-block-h-auto text-center" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-lock fa-4x mb-4" style="color: #003366;"></i>
+                        <h3 class="mb-3">Seguridad</h3>
+                        <p>Implementamos encriptación avanzada para proteger la propiedad intelectual de tus planos y
+                            los datos sensibles de tus clientes.</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-col">
+                    <div class="tm-block tm-block-h-auto text-center" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-sync-alt fa-4x mb-4" style="color: #003366;"></i>
+                        <h3 class="mb-3">Sincronización</h3>
+                        <p>Tus datos actualizados en tiempo real. Accede a la última versión del proyecto desde tu
+                            móvil, tablet o escritorio sin conflictos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row tm-content-row">
+                <div class="col-12 tm-col">
+                    <div class="tm-block tm-block-h-auto" data-aos="fade-up">
+                        <h2 class="tm-block-title mb-5">Líderes del Proyecto</h2>
+                        <div class="row text-center">
+
+                            <div class="col-md-4 mb-4">
+                                <div class="mb-4 d-flex justify-content-center">
+                                    <div
+                                        style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 4px solid #003366;">
+                                        <img src="img/javi.png" alt="CEO"
+                                            style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                </div>
+                                <h4>Javier Gómez-Comino</h4>
+                                <p class="text-muted">CEO & Fundador</p>
+                                <p>Arquitecto con 15 años de experiencia, visionario detrás de la estructura lógica de
+                                    ArquiData.</p>
+                            </div>
+
+                            <div class="col-md-4 mb-4">
+                                <div class="mb-4 d-flex justify-content-center">
+                                    <div
+                                        style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 4px solid #003366;">
+                                        <img src="img/david.png" alt="CTO"
+                                            style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                </div>
+                                <h4>David Nieto</h4>
+                                <p class="text-muted">Director de Tecnología</p>
+                                <p>Ingeniero de software especializada en seguridad en la nube y sistemas distribuidos.
+                                </p>
+                            </div>
+
+                            <div class="col-md-4 mb-4">
+                                <div class="mb-4 d-flex justify-content-center">
+                                    <div
+                                        style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 4px solid #003366;">
+                                        <img src="img/basi.png" alt="Product"
+                                            style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                </div>
+                                <h4>Basi Córdoba</h4>
+                                <p class="text-muted">Jefe de Producto</p>
+                                <p>Experto en UX/UI, encargado de que la plataforma sea intuitiva para arquitectos no
+                                    técnicos.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer id="footer" class="footer position-relative">
+                <div class="footer-top-border"></div>
+
+                <div class="container">
+                    <div class="row gy-5">
+
+                        <div class="col-lg-4 col-md-12 footer-about">
+                            <a href="index.html" class="logo d-flex align-items-center mb-3">
+                                <span class="sitename">ArquiData</span>
+                            </a>
+                            <p>
+                                Transformamos la gestión arquitectónica. Seguridad, eficiencia y diseño unidos en una
+                                sola plataforma en la nube.
+                            </p>
+                            <div class="social-links d-flex mt-4">
+                                <ul class="wrapper social-custom-list">
+                                    <li class="icon facebook">
+                                        <span class="tooltip">Facebook</span>
+                                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                    </li>
+                                    <li class="icon twitter">
+                                        <span class="tooltip">Twitter</span>
+                                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                                    </li>
+                                    <li class="icon instagram">
+                                        <span class="tooltip">Instagram</span>
+                                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-6 footer-links">
+                            <h4>Explora</h4>
+                            <ul>
+                                <li><a href="index.html">Inicio</a></li>
+                                <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+                                <li><a href="#servicios">Servicios</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-3 col-6 footer-newsletter">
+                            <h4>Novedades</h4>
+                            <p>Suscríbete para recibir actualizaciones de la plataforma.</p>
+                            <form action="#" class="newsletter-form">
+                                <input type="email" placeholder="Tu email corporativo">
+                                <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+
+                        <div class="col-lg-3 col-md-12 footer-contact">
+                            <h4>Contacto</h4>
+                            <p>
+                                <strong><i class="fas fa-map-marker-alt mr-2"></i></strong> Avnd. Los Institutos S/N<br>
+                                Alcazar de San Juan, España
+                            </p>
+                            <p>
+                                <strong><i class="fas fa-phone mr-2"></i></strong> +34 633 55 13 46<br>
+                                <strong><i class="fas fa-envelope mr-2"></i></strong> info@arquidata.com
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="container copyright text-center mt-5">
+                    <div class="copyright-content">
+                        <p>© 2026 <strong class="sitename">ArquiData</strong>. Todos los derechos reservados.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('change', function () {
+            if (this.checked) {
+                body.classList.add('dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+            }
+        });
+
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                const loader = document.getElementById('loader-wrapper');
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }, 1200);
+        });
+    </script>
+</body>
+
+</html>
