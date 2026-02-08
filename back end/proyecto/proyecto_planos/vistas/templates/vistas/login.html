@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - ArquiData</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <link rel="stylesheet" href="{% static 'vistas/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vistas/css/login.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="login-pro-body">
+
+    <div class="login-pro-wrapper">
+        <div class="login-pro-card">
+
+            <div class="login-pro-visual">
+                <div class="login-pro-overlay"></div>
+                <div class="login-pro-content">
+                    <i class="fas fa-drafting-compass fa-3x mb-3"></i>
+                    <h3>ArquiData</h3>
+                    <p>Gestión integral para estudios de arquitectura.</p>
+                </div>
+            </div>
+
+            <div class="login-pro-form">
+                <div class="login-header">
+                    <h2>Bienvenido</h2>
+                    <p>Accede a tu espacio de trabajo</p>
+                </div>
+
+                <form action="{% url 'index'%}">
+                    {% csrf_token %}
+
+                    <div class="input-pro-group delay-1">
+                        <label>Usuario / Email</label>
+                        <div class="input-field">
+                            <i class="fas fa-user"></i>
+                            <input type="text" required>
+                        </div>
+                    </div>
+
+                    <div class="input-pro-group delay-2">
+                        <label>Contraseña</label>
+                        <div class="input-field">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" required>
+                        </div>
+                    </div>
+
+                    <div class="form-pro-actions delay-3">
+                        <div class="custom-check">
+                            <input type="checkbox" id="rem">
+                            <label for="rem">Recordarme</label>
+                        </div>
+                        <a href="{% url 'recuperar'%}" class="forgot-pass">¿Olvidaste la contraseña?</a>
+                    </div>
+                    
+                    <div class="login-separator delay-4">
+                        <span>— o —</span>
+                    </div>
+
+                    <button type="button" class="google-btn mb-4 delay-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" viewBox="0 0 256 262">
+                            <path fill="#4285F4" d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"></path>
+                            <path fill="#34A853" d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1"></path>
+                            <path fill="#FBBC05" d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782"></path>
+                            <path fill="#EB4335" d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"></path>
+                        </svg>
+                        Continuar con Google
+                    </button>
+                    
+                    <button type="submit" class="btn-pro delay-5">
+                        INICIAR SESIÓN
+                    </button>
+
+                </form>
+
+                <div class="login-footer delay-6">
+                    <span>¿Aún no tienes cuenta?</span>
+                    <a href="{% url 'register'%}">Registrate!</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
