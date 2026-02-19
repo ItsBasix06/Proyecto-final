@@ -76,18 +76,18 @@ WSGI_APPLICATION = 'proyecto_planos.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-#DATABASES = {
-    #'default': {
-        #'ENGINE': 'django.db.backends.oracle',
-        #'NAME': (
-            #'(DESCRIPTION='
-            #'(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))'
-            #'(CONNECT_DATA=(SERVICE_NAME=FREEPDB1))'
-        #),
-        #'USER': 'admin',
-        #'PASSWORD': '1528Jav992#$',
-    #}
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': (
+            '(DESCRIPTION='
+            '(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))'
+            '(CONNECT_DATA=(SERVICE_NAME=FREEPDB1))'
+        ),
+        'USER': 'admin',
+        'PASSWORD': '1528Jav992#$',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -126,7 +126,7 @@ USE_TZ = True
 # Asegúrate de que se vea así para que encuentre la carpeta "vistas"
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'), 
+    os.path.join(BASE_DIR, 'proyecto_planos', 'static'), 
 ]
 
 # Default primary key field type
