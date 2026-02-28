@@ -6,5 +6,6 @@ urlpatterns = [
     path('login/', v.login_usuario, name="login"),
     path('logout/', v.logout_usuario, name="logout"),
     path('', v.index, name="index"),
-    path('crear-arquitecto/', v.crear_arquitecto, name="crear-arquitecto")
+    path('crear-arquitecto/', v.crear_arquitecto, name="crear-arquitecto"),
+    path('quienes-somos/', v.quienes_somos, name='quienes-somos'),
 ]

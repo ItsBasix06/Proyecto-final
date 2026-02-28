@@ -1,20 +1,91 @@
 {% extends "usuarios/base.html" %}
+{% load static %}
 
-{% block title %}Inicio{% endblock %}
+{% block title %}Inicio - ArquiData{% endblock %}
 
 {% block content %}
-<h1>Página de inicio</h1>
+<div class="container">
 
-<p>{{ mensaje }}</p>
+    <div class="row tm-content-row tm-mt-big">
+        <div class="col-12 tm-col">
+            <div class="tm-block tm-block-h-auto text-center" data-aos="zoom-in">
+                <h2 class="tm-block-title">Digitaliza tu Estudio de Arquitectura</h2>
+                <p class="mb-4">
+                    Bienvenido a <strong>ArquiData</strong>. La plataforma definitiva para gestionar planos,
+                    proyectos y documentación técnica de forma segura y accesible desde cualquier lugar.
+                </p>
+                <a href="register.html" class="animated-button">
+                    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                        </path>
+                    </svg>
+                    <span class="text">Comenzar Ahora</span>
+                    <span class="circle"></span>
+                    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
 
-{% if user.is_authenticated %}
-    {% if user.cliente %}
-        <p>Eres un <strong>Cliente</strong></p>
-        <a href="{% url 'crear-arquitecto' %}">Crear arquitecto</a>
-    {% elif user.arquitecto %}
-        <p>Eres un <strong>Arquitecto</strong></p>
-    {% endif %}
-{% else %}
-    <p>Por favor, inicia sesión para continuar.</p>
-{% endif %}
+    <div class="row tm-content-row mt-5" id="quienes-somos">
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-col">
+            <div class="tm-block" data-aos="fade-right">
+                <div class="tm-product-img-dummy"
+                    style="width: 100%; height: 300px; background-image: url('{% static 'img/img-index-sin-login.png' %}'); background-size: cover; background-position: center; border-radius: 10px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-col">
+            <div class="tm-block" data-aos="fade-left">
+                <h2 class="tm-block-title">Quiénes Somos</h2>
+                <p>
+                    En ArquiData somos un equipo apasionado por la arquitectura y la tecnología.
+                    Nacimos con un objetivo claro: eliminar el caos del papel y los archivos desordenados.
+                </p>
+                <p>
+                    Entendemos las necesidades de los arquitectos modernos. Por eso, hemos creado un entorno
+                    digital donde la <strong>eficiencia</strong> y la <strong>organización</strong> son la
+                    prioridad.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row tm-content-row mt-5" id="servicios">
+        <div class="col-12 tm-col">
+            <div class="tm-block tm-block-h-auto">
+                <h2 class="tm-block-title text-center mb-5" data-aos="fade-down">Qué Hacemos por Ti</h2>
+
+                <div class="row text-center">
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-layer-group fa-4x mb-3" style="color: #003366;"></i>
+                        <h4 class="mb-3">Gestión de Planos</h4>
+                        <p>Sube, organiza y versiona tus planos en formatos CAD y PDF. Mantén todo ordenado por
+                            proyecto.</p>
+                    </div>
+
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-cloud-upload-alt fa-4x mb-3" style="color: #003366;"></i>
+                        <h4 class="mb-3">Acceso en la Nube</h4>
+                        <p>Accede a tu documentación desde la obra, la oficina o tu casa. Tu estudio siempre
+                            contigo.</p>
+                    </div>
+
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-users-cog fa-4x mb-3" style="color: #003366;"></i>
+                        <h4 class="mb-3">Colaboración</h4>
+                        <p>Comparte proyectos con clientes y colaboradores de forma segura y controlada.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 {% endblock %}

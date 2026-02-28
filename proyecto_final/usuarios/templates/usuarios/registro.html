@@ -1,22 +1,83 @@
-{% extends "usuarios/base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
 
-{% block title %}Registro{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - ArquiData</title>
 
-{% block content %}
-<h1>Registro de Cliente</h1>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
+<body class="register-pro-body">
 
-    <button type="submit">Registrarse</button>
-</form>
+    <div class="register-pro-wrapper">
+        <div class="register-pro-card">
 
-<p>
-    ¿Ya tienes cuenta?
-    <a href="{% url 'login' %}">Inicia sesión</a>
-</p>
-<p>
-    <a href="{% url 'index' %}">Volver al inicio</a>
-</p>
-{% endblock %}
+            <div class="register-pro-visual">
+                <div class="register-pro-overlay"></div>
+                <div class="register-pro-content">
+                    <i class="fas fa-layer-group fa-3x mb-3"></i>
+                    <h3>Únete a ArquiData</h3>
+                    <p>Centraliza tus proyectos y colabora en tiempo real.</p>
+                </div>
+            </div>
+
+            <div class="register-pro-form">
+                <div class="register-header">
+                    <h2>Crear Cuenta</h2>
+                    <p>Rellena tus datos para empezar</p>
+                </div>
+
+                <form method="POST" action="{% url 'registro' %}">
+                    {% csrf_token %}
+
+                    {% if form.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.errors }}
+                    </div>
+                    {% endif %}
+
+                    <div class="input-pro-group">
+                        <label>Nombre de Usuario</label>
+                        <div class="input-field">
+                            <i class="fas fa-user-tag"></i>
+                            {{ form.username }}
+                        </div>
+                    </div>
+
+                    <div class="input-pro-group">
+                        <label>Contraseña</label>
+                        <div class="input-field">
+                            <i class="fas fa-lock"></i>
+                            {{ form.password1 }}
+                        </div>
+                    </div>
+
+                    <div class="input-pro-group">
+                        <label>Confirmar Contraseña</label>
+                        <div class="input-field">
+                            <i class="fas fa-check-circle"></i>
+                            {{ form.password2 }}
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-pro">REGISTRARSE</button>
+                </form>
+
+                <div class="register-footer delay-8">
+                    <span>¿Ya tienes cuenta?</span>
+                    <a href="{% url 'login' %}">Inicia Sesión</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

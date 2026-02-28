@@ -86,6 +86,10 @@ def logout_usuario(request):
     messages.success(request, "Has cerrado sesión correctamente")
     return redirect("login")
 
+def quienes_somos(request):
+    # Esta vista simplemente renderiza el template que creamos antes
+    return render(request, 'usuarios/quienes_somos.html')
+
 def index(request):
     if request.user.is_authenticated:
         mensaje = f"Hola, {request.user.username}"
