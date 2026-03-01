@@ -32,8 +32,7 @@
                         style="background-color: #003366; border-radius: 15px;">
 
                         <a class="navbar-brand" href="{% url 'index' %}">
-                            <img src="{% static 'img/logo-titulo.png' %}" alt="Logo ArquiData"
-                                class="logo-header">
+                            <img src="{% static 'img/logo-titulo.png' %}" alt="Logo ArquiData" class="logo-header">
                         </a>
 
                         <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
@@ -96,13 +95,14 @@
                                 </li>
                                 {% else %}
                                 <li class="nav-item">
-                                    <form action="{% url 'logout' %}" method="post" style="display: inline;">
-                                        {% csrf_token %}
-                                        <button type="submit" class="nav-link btn btn-link"
-                                            style="color: white; padding-top: 15px;">
-                                            <i class="fas fa-sign-out-alt"></i> Salir
-                                        </button>
-                                    </form>
+                                    <a href="{% url 'logout' %}" class="nav-link custom-btn-link">
+                                        <div class="user-profile logout-style">
+                                            <div class="user-profile-inner">
+                                                <i class="fas fa-sign-out-alt"></i>
+                                                <p>Salir</p>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </li>
                                 {% endif %}
                             </ul>
@@ -136,8 +136,6 @@
             </div>
         </div>
     </div>
-
-
 
     {% block content %}{% endblock %}
 

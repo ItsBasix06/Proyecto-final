@@ -92,9 +92,10 @@ def quienes_somos(request):
 
 def index(request):
     if request.user.is_authenticated:
-        mensaje = f"Hola, {request.user.username}"
-    else:
-        mensaje = "No has iniciado sesión"
-
-    return render(request, "usuarios/index.html", {"mensaje": mensaje})
-
+        if hasattr(request.user, 'cliente'):
+            return render(request, "usuarios/index_cliente.html")
+        
+        if hasattr(request.user, 'arquitecto'):
+            return render(request, "usuarios/index_arquitecto.html")
+     
+    return render(request, "usuarios/index.html")

@@ -8,4 +8,6 @@ urlpatterns = [
     path('', v.index, name="index"),
     path('crear-arquitecto/', v.crear_arquitecto, name="crear-arquitecto"),
     path('quienes-somos/', v.quienes_somos, name='quienes-somos'),
+    path('index-arquitecto/', v.index, name="index-arquitecto"),
+    path('index-cliente/', v.index, name="index-cliente")
 ]

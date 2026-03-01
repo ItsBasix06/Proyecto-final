@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - ArquiData</title>
-    
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
@@ -36,14 +36,6 @@
                 <form method="POST" action="{% url 'login' %}">
                     {% csrf_token %}
 
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="alert alert-danger" style="font-size: 0.8rem; padding: 5px;">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-
                     <div class="input-pro-group delay-1">
                         <label>Usuario</label>
                         <div class="input-field">
@@ -60,14 +52,14 @@
                         </div>
                     </div>
 
-                    <div class="form-pro-actions delay-3">
+                    <!--<div class="form-pro-actions delay-3">
                         <div class="custom-check">
                             <input type="checkbox" id="rem" name="remember">
                             <label for="rem">Recordarme</label>
                         </div>
                         <a href="#" class="forgot-pass">¿Olvidaste la contraseña?</a>
-                    </div>
-                    
+                    </div>-->
+
                     <button type="submit" class="btn-pro delay-5">
                         INICIAR SESIÓN
                     </button>
@@ -78,10 +70,17 @@
                     <span>¿Aún no tienes cuenta?</span>
                     <a href="{% url 'registro' %}">Registrate!</a>
                 </div>
+
+                <a href="{% url 'index' %}" class="btn-pro delay-5"
+                    style="margin-top: 25px; text-decoration: none; color: white; display: inline-block; text-align: center;">
+                    VOLVER AL INICIO
+                </a>
+
             </div>
 
         </div>
     </div>
 
 </body>
+
 </html>
