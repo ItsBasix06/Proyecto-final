@@ -1,73 +1,101 @@
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib import messages
+from .models import Cliente
 from django.contrib.auth import login, logout
-from django.contrib.auth.decorators import login_required 
-from django.contrib import messages 
+from django.contrib.auth.models import User, Group
+from django.core.exceptions import PermissionDenied
+from .models import Arquitecto
+
+def solo_grupo(nombre_grupo):
+    def decorator(view_func):
+        def wrapper(request, *args, **kwargs):
+            if not request.user.is_authenticated:
+                raise PermissionDenied
+            if not request.user.groups.filter(name=nombre_grupo).exists():
+                raise PermissionDenied
+            return view_func(request, *args, **kwargs)
+        return wrapper
+    return decorator
 
 def registro_usuario(request):
-    """
-    Vista de registro de usuarios.
-    - GET: muestra el formulario de registro.
-    - POST: valida credenciales, crea el usuario y redirige al login.
-    """
     if request.method == "POST":
-        # Se procesa el formulario con los datos enviados
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            # Se guarda el nuevo usuario en la base de datos
             usuario = form.save()
-            messages.success(request, "Usuario registrado con éxito")
+
+            # Crear perfil cliente
+            Cliente.objects.create(user=usuario)
+
+            # Asignar grupo CLIENTE
+            grupo_cliente = Group.objects.get(name='CLIENTE')
+            usuario.groups.add(grupo_cliente)
+
             return redirect("login")
     else:
-        # Se envía un formulario de registro vacío
         form = UserCreationForm()
 
     return render(request, "usuarios/registro.html", {"form": form})
 
+@solo_grupo('CLIENTE')
+def crear_arquitecto(request):
+    # Solo CLIENTES pueden crear arquitectos
+    if not request.user.groups.filter(name='CLIENTE').exists():
+        raise PermissionDenied
+
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+
+        user = User.objects.create_user(
+            username=username,
+            password=password
+        )
+
+        Arquitecto.objects.create(user=user)
+
+        # Asignar grupo ARQUITECTO
+        grupo_arquitecto = Group.objects.get(name='ARQUITECTO')
+        user.groups.add(grupo_arquitecto)
+
+        return redirect("index")
+
+    return render(request, "usuarios/crear_arquitecto.html")
 
 def login_usuario(request):
     """
-    Vista de inicio de sesión.
-    - GET: muestra el formulario de login.
-    - POST: valida credenciales y crea la sesión del usuario.
+    Login único para clientes y arquitectos.
     """
     if request.method == "POST":
-        # AuthenticationForm requiere el objeto request y los datos POST
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
-            # Se extrae el usuario validado del formulario
             usuario = form.get_user()
-            # Se crea la sesión en el navegador
             login(request, usuario)
             messages.success(request, "Has iniciado sesión correctamente")
-            return redirect("inicio")
+            return redirect("index")
     else:
-        # Formulario de login vacío
         form = AuthenticationForm()
 
     return render(request, "usuarios/login.html", {"form": form})
 
-
 def logout_usuario(request):
     """
-    Vista de cierre de sesión.
-    Elimina la sesión del usuario actual y redirige al login.
+    Cierre de sesión del usuario.
     """
-    # Elimina los datos de sesión del usuario
     logout(request)
     messages.success(request, "Has cerrado sesión correctamente")
     return redirect("login")
 
+def quienes_somos(request):
+    # Esta vista simplemente renderiza el template que creamos antes
+    return render(request, 'usuarios/quienes_somos.html')
 
-def inicio(request):
-    """
-    Vista de la página principal.
-    Muestra un mensaje de bienvenida personalizado y la lista total de productos.
-    """
-    # Lógica para personalizar el saludo según el estado de la sesión
+def index(request):
     if request.user.is_authenticated:
-        mensaje = f"Hola, {request.user.username}"
-    else:
-        mensaje = "No has iniciado sesión"
-
-    return render(request, "usuarios/inicio.html", {"mensaje": mensaje})
+        if hasattr(request.user, 'cliente'):
+            return render(request, "usuarios/index_cliente.html")
+        
+        if hasattr(request.user, 'arquitecto'):
+            return render(request, "usuarios/index_arquitecto.html")
+     
+    return render(request, "usuarios/index.html")

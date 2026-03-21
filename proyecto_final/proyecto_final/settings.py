@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'projecto_final.urls'
+ROOT_URLCONF = 'proyecto_final.urls'
 
 TEMPLATES = [
     {
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'projecto_final.wsgi.application'
+WSGI_APPLICATION = 'proyecto_final.wsgi.application'
 
 
 # Database
@@ -117,3 +117,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Esta carpeta es donde pondrás tus archivos durante el desarrollo
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
