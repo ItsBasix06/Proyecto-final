@@ -1,0 +1,104 @@
+{% extends 'usuarios/base_cliente.html' %}
+
+{% block title %}Mi Suscripción - ArquiData{% endblock %}
+
+{% block content %}
+<div class="container py-5 animate-fadeIn">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-0 shadow-lg" style="border-radius: 30px; overflow: hidden; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);">
+                
+                <div class="text-center p-5" style="background: linear-gradient(135deg, #003366 0%, #001a33 100%); color: white;">
+                    <div class="check-container mb-4">
+                        <i class="fas fa-check-circle fa-5x animate-check" style="color: #28a745;"></i>
+                    </div>
+                    <h2 class="font-weight-bold">Suscripción Activa</h2>
+                    <p class="lead mb-0" style="opacity: 0.9;">Gestiona tu nivel de cuenta ArquiData</p>
+                </div>
+
+                <div class="card-body p-5">
+                    <div class="plan-summary p-4 mb-4" style="background: #f8f9fa; border-radius: 20px; border: 1px dashed #003366;">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="text-uppercase small font-weight-bold text-muted">Plan Contratado</span>
+                                <h4 class="mb-0" style="color: #003366; font-weight: 700;">{{ suscripcion.tipo_suscripcion }}</h4>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-uppercase small font-weight-bold text-muted">Importe Mensual</span>
+                                <h4 class="mb-0" style="color: #28a745; font-weight: 700;">{{ suscripcion.precio }}€</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-3">
+                        
+                        <a href="{% url 'suscripciones' %}?cambiar=true" class="btn btn-outline-primary btn-block py-3 mb-3 shadow-sm" style="border-radius: 15px; font-weight: 700; border-width: 2px; transition: 0.3s;">
+                            <i class="fas fa-sync-alt mr-2"></i> ACTUALIZAR O CAMBIAR PLAN
+                        </a>
+
+                        <form method="POST" action="{% url 'suscripciones' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="accion" value="eliminar">
+                            <button type="submit" class="btn btn-danger btn-block py-3 shadow-sm" 
+                                    style="border-radius: 15px; font-weight: 700; transition: 0.3s;"
+                                    onclick="return confirm('¿Estás seguro de que deseas eliminar tu suscripción? Se perderán las ventajas de tu plan actual.')">
+                                <i class="fas fa-trash-alt mr-2"></i> ELIMINAR SUSCRIPCIÓN
+                            </button>
+                        </form>
+
+                    </div>
+
+                    <hr class="my-5">
+
+                    <div class="text-center">
+                        <a href="{% url 'index-cliente' %}" class="btn btn-link text-muted" style="text-decoration: none; font-weight: 600;">
+                            <i class="fas fa-arrow-left mr-2"></i> Volver al Panel de Control
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-center mt-4 text-white-50 small">
+                ¿Necesitas ayuda con tu facturación? <a href="#" class="text-warning font-weight-bold" style="text-decoration: none;">Contactar soporte</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Animación de entrada de la tarjeta */
+    .animate-fadeIn {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Animación del check */
+    .animate-check {
+        animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s both;
+        text-shadow: 0 0 20px rgba(40, 167, 69, 0.3);
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes scaleIn {
+        from { transform: scale(0); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Efectos de Hover */
+    .btn-outline-primary:hover {
+        background-color: #003366;
+        border-color: #003366;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .btn-danger:hover {
+        background-color: #c0392b;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4) !important;
+    }
+</style>
+{% endblock %}

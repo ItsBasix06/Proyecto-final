@@ -1,5 +1,6 @@
 from django.urls import path
 from usuarios import views as v
+from suscripciones import views as vs
 
 urlpatterns = [
     path('registro-cliente/', v.registro_cliente, name="registro-cliente"),
@@ -9,5 +10,7 @@ urlpatterns = [
     path('registro-arquitecto/', v.registro_arquitecto, name="registro-arquitecto"),
     path('quienes-somos/', v.quienes_somos, name='quienes-somos'),
     path('index-arquitecto/', v.index, name="index-arquitecto"),
-    path('index-cliente/', v.index, name="index-cliente")
+    path('index-cliente/', v.index, name="index-cliente"),
+    path('suscripciones/', vs.contratar_suscripcion, name="suscripciones"),
+    path('suscripcion-exitosa/', vs.contratar_suscripcion, name="suscripcion-exitosa")
 ]

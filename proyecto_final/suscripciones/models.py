@@ -31,7 +31,7 @@ class Suscripcion(models.Model):
 
     cliente = models.OneToOneField(
         Cliente,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         verbose_name="Cliente",
     )
 
