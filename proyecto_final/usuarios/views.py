@@ -1,12 +1,16 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User, Group
 from django.core.exceptions import PermissionDenied
-from .models import Cliente, Arquitecto
+from .models import Cliente, Arquitecto, MensajeContacto
+from suscripciones.models import Suscripcion
 from django.db import transaction
 from .forms import RegistroArquitectoForm, RegistroClienteForm
+from django.contrib.auth.decorators import login_required
+
+
 
 # Decorador personalizado
 def solo_grupo(nombre_grupo):
@@ -105,14 +109,52 @@ def logout_usuario(request):
 
 def index(request):
     if request.user.is_authenticated:
-        # Usamos los related_name definidos en el modelo: perfil_cliente y perfil_arquitecto
+        # CASO CLIENTE
         if hasattr(request.user, 'perfil_cliente'):
-            return render(request, "usuarios/index_cliente.html")
+            cliente = request.user.perfil_cliente
+            # Buscamos la suscripción vinculada a este cliente
+            suscripcion = Suscripcion.objects.filter(cliente=cliente).first()
+            
+            return render(request, "usuarios/index_cliente.html", {
+                'cliente': cliente,
+                'suscripcion': suscripcion  # <--- Enviamos la suscripción al HTML
+            })
         
+        # CASO ARQUITECTO
         if hasattr(request.user, 'perfil_arquitecto'):
-            return render(request, "usuarios/index_arquitecto.html")
+            return render(request, "usuarios/index_arquitecto.html", {
+                'arquitecto': request.user.perfil_arquitecto
+            })
      
+    # Si no está autenticado
     return render(request, "usuarios/index.html")
 
 def quienes_somos(request):
     return render(request, 'usuarios/quienes_somos.html')
+
+@login_required
+def info_arquitecto(request):
+    # Obtenemos el perfil del cliente
+    cliente = get_object_or_404(Cliente, user=request.user)
+    
+    # Obtenemos su arquitecto (ajusta 'arquitecto' según el nombre en tu modelo Cliente)
+    arquitecto = cliente.arquitecto 
+
+    if request.method == "POST":
+        asunto = request.POST.get('asunto')
+        mensaje = request.POST.get('mensaje')
+        
+        # Lógica para guardar el mensaje
+        MensajeContacto.objects.create(
+            cliente=cliente,
+            arquitecto=arquitecto,
+            asunto=asunto,
+            mensaje=mensaje
+        )
+        messages.success(request, "¡Mensaje enviado correctamente a tu arquitecto!")
+        return redirect('tu_url_de_arquitecto') # Cambia por el name de tu URL
+
+    return render(request, 'usuarios/arquitecto_info.html', {
+        'arquitecto': arquitecto,
+        'cliente': cliente
+    })

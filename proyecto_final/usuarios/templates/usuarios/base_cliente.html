@@ -32,7 +32,7 @@
                 <nav class="navbar navbar-expand-xl navbar-dark py-3"
                     style="background-color: #003366; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,51,102,0.1);">
 
-                    <a class="navbar-brand ml-3" href="#">
+                    <a class="navbar-brand ml-3" href="{% url 'index' %}">
                         <img src="{% static 'img/logo-titulo.png' %}" alt="Logo ArquiData" class="logo-header">
                         <span class="badge badge-light text-primary ml-2 shadow-sm"
                             style="font-size: 0.7em; vertical-align: middle;">CLIENTE</span>
@@ -47,7 +47,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mx-auto ml-5">
                             <li class="nav-item active px-2"> 
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{% url 'index' %}">
                                     <i class="fas fa-tachometer-alt mr-2"></i>Inicio
                                 </a>
                             </li>
@@ -57,10 +57,14 @@
                                 </a>
                             </li>
                             <li class="nav-item px-2">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{% url 'mi-arquitecto' %}">
                                     <i class="fas fa-users mr-2"></i>Arquitecto
                                 </a>
                             </li>
+                            <li class="nav-item px-2">
+                                <a class="nav-link" href="#">
+                                    <i class="fas fa-users mr-2"></i>Mis Proyectos
+                                </a>
                             </li>
                         </ul>
 

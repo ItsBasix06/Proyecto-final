@@ -9,33 +9,42 @@ def contratar_suscripcion(request):
     cliente = get_object_or_404(Cliente, user=request.user)
     suscripcion_existente = Suscripcion.objects.filter(cliente=cliente).first()
 
-    # --- ACCIÓN: ELIMINAR ---
-    if request.method == "POST" and request.POST.get('accion') == 'eliminar':
-        if suscripcion_existente:
-            suscripcion_existente.delete()
-            messages.success(request, "Suscripción eliminada correctamente.")
-        return redirect('suscripciones')
-
-    # --- ACCIÓN: CREAR O ACTUALIZAR ---
     if request.method == "POST":
+        # --- CASO A: ELIMINAR ---
+        if request.POST.get('accion') == 'eliminar':
+            if suscripcion_existente:
+                suscripcion_existente.delete()
+                messages.success(request, "Suscripción eliminada correctamente.")
+            return redirect('suscripciones')
+
+        # --- CASO B: CONTRATAR O ACTUALIZAR ---
         tipo = request.POST.get('tipo_plan')
         precios = {'Basico': 9.99, 'Estandar': 19.99, 'Premium': 29.99}
         
         if tipo in precios:
             try:
                 with transaction.atomic():
-                    suscripcion, creado = Suscripcion.objects.update_or_create(
+                    Suscripcion.objects.update_or_create(
                         cliente=cliente,
                         defaults={'tipo_suscripcion': tipo, 'precio': precios[tipo]}
                     )
-                    return render(request, 'suscripciones/suscripcion_exitosa.html', {'suscripcion': suscripcion})
+                messages.success(request, f"¡Plan {tipo} activado con éxito!")
+                # REDIRIGIMOS a la misma vista. 
+                # Al volver a entrar por GET, se ejecutará la lógica de visualización de abajo.
+                return redirect('suscripciones') 
             except Exception as e:
-                messages.error(request, f"Error: {e}")
+                messages.error(request, f"Hubo un problema al procesar tu suscripción: {e}")
+                return redirect('suscripciones')
 
-    # --- VISUALIZACIÓN ---
-    # Si ya está suscrito y NO viene de darle al botón "Cambiar"
-    if suscripcion_existente and request.GET.get('cambiar') != 'true':
-        return render(request, 'suscripciones/suscripcion_exitosa.html', {'suscripcion': suscripcion_existente})
+    # --- VISUALIZACIÓN (Manejo de GET) ---
     
-    # En cualquier otro caso (nuevo o quiere cambiar), mostramos planes
-    return render(request, 'suscripciones/suscripciones.html', {'cliente': cliente})
+    # Si ya tiene una suscripción y NO ha pulsado el botón de "Cambiar" (?cambiar=true)
+    if suscripcion_existente and request.GET.get('cambiar') != 'true':
+        return render(request, 'suscripciones/suscripcion_exitosa.html', {
+            'suscripcion': suscripcion_existente
+        })
+    
+    # Si es nuevo, o si quiere cambiar de plan (porque pulsó el botón "Actualizar")
+    return render(request, 'suscripciones/suscripciones.html', {
+        'cliente': cliente
+    })

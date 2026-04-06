@@ -1,4 +1,148 @@
-{% extends "usuarios/base_cliente.html" %}
-{% load static %}
+{% extends 'usuarios/base_cliente.html' %}
 
-{% block title %}Cliente - ArquiData{% endblock %}
+{% block title %}Panel de Control - ArquiData{% endblock %}
+
+{% block content %}
+<div class="container py-5 animate-fadeIn">
+    
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-11">
+            <div class="card border-0 shadow-lg p-5 hero-card overflow-hidden" style="position: relative;">
+                <div style="position: absolute; top: -20px; right: -20px; opacity: 0.05;">
+                    <i class="fas fa-drafting-compass fa-10x"></i>
+                </div>
+
+                <div class="row align-items-center text-center text-md-left">
+                    <div class="col-md-8">
+                        <h1 class="display-4 font-weight-bold" style="color: #003366;">
+                            Bienvenido, {{ request.user.username }}
+                        </h1>
+                        <p class="lead text-muted mt-3" style="max-width: 800px;">
+                            Gestiona tus proyectos y mantén contacto directo con tu arquitecto asignado. 
+                            ArquiData es tu herramienta integral para llevar tus ideas al siguiente nivel.
+                        </p>
+                        
+                        <div class="d-flex flex-wrap mt-4 justify-content-center justify-content-md-start">
+                            <div class="status-badge mr-3 mb-2">
+                                <i class="fas fa-project-diagram mr-2"></i> 1 Proyecto activo
+                            </div>
+                            <div class="status-badge mb-2">
+                                <i class="fas fa-check-circle mr-2"></i> Suscripción: {{ suscripcion.tipo_suscripcion|default:"Sin plan" }}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 text-center mt-4 mt-md-0">
+                        <a href="{% url 'mi-arquitecto' %}" class="btn btn-primary btn-lg shadow-sm hero-btn px-4 py-3" style="color: white; font-weight: 700; width: 100%;">
+                            <i class="fas fa-user-tie mr-2"></i> CONTACTA A TU ARQUITECTO
+                        </a>
+                        <small class="text-muted d-block mt-2">Respuesta promedio: < 24h</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mb-5 mt-5">
+        <span class="badge badge-primary px-3 py-2 mb-2" style="background: #003366; border-radius: 20px;">ACTUALIZA TU PLAN</span>
+        <h2 class="font-weight-bold text-white d-inline-block px-4 py-2" style="opacity: 0.9; background: #003366; border-radius: 20px;">Nuestros Planes</h2>
+    </div>
+    
+    <div class="row align-items-stretch justify-content-center pricing-row">
+        <div class="col-lg-4 col-md-6 mb-4 d-flex">
+            <div class="card border-0 shadow pricing-card w-100">
+                <div class="card-body p-5 text-center d-flex flex-column">
+                    <div class="mb-4">
+                        <i class="fas fa-paper-plane fa-3x" style="color: #003366;"></i>
+                    </div>
+                    <h4 class="text-uppercase font-weight-bold mb-4">Básico</h4>
+                    <h2 class="display-4 font-weight-bold">€9.99<span class="text-muted h5">/mes</span></h2>
+                    <ul class="list-unstyled my-4 text-left flex-grow-1">
+                        <li class="mb-3"><i class="fa fa-check text-success mr-2"></i> 1 Proyecto activo</li>
+                        <li class="mb-3"><i class="fa fa-check text-success mr-2"></i> Gestión de planos básica</li>
+                        <li class="mb-3 text-muted"><i class="fa fa-times mr-2"></i> Soporte Prioritario</li>
+                    </ul>
+                    <a href="{% url 'suscripciones' %}" class="btn btn-outline-primary btn-block py-3 rounded-pill font-weight-bold">SELECCIONAR BÁSICO</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4 d-flex">
+            <div class="card border-0 shadow-lg pricing-card popular-plan w-100">
+                <div class="card-body p-5 text-center text-white d-flex flex-column">
+                    <div class="mb-4">
+                        <i class="fas fa-rocket fa-3x text-warning"></i>
+                    </div>
+                    <h4 class="text-uppercase font-weight-bold mb-4">Estándar</h4>
+                    <h2 class="display-4 font-weight-bold text-white">€19.99<span class="text-light h5">/mes</span></h2>
+                    <ul class="list-unstyled my-4 text-left flex-grow-1">
+                        <li class="mb-3"><i class="fa fa-check text-warning mr-2"></i> 10 Proyectos activos</li>
+                        <li class="mb-3"><i class="fa fa-check text-warning mr-2"></i> Almacenamiento ampliado</li>
+                        <li class="mb-3"><i class="fa fa-check text-warning mr-2"></i> Informes personalizados</li>
+                        <li class="mb-3"><i class="fa fa-check text-warning mr-2"></i> Soporte Prioritario</li>
+                    </ul>
+                    <a href="{% url 'suscripciones' %}" class="btn btn-light btn-block py-3 rounded-pill font-weight-bold" style="color: #003366;">¡EMPEZAR AHORA!</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4 d-flex">
+            <div class="card border-0 shadow pricing-card w-100">
+                <div class="card-body p-5 text-center d-flex flex-column">
+                    <div class="mb-4">
+                        <i class="fas fa-crown fa-3x text-warning"></i>
+                    </div>
+                    <h4 class="text-uppercase font-weight-bold mb-4">Premium</h4>
+                    <h2 class="display-4 font-weight-bold">€29.99<span class="text-muted h5">/mes</span></h2>
+                    <ul class="list-unstyled my-4 text-left flex-grow-1">
+                        <li class="mb-3"><i class="fa fa-check text-success mr-2"></i> Proyectos ilimitados</li>
+                        <li class="mb-3"><i class="fa fa-check text-success mr-2"></i> Análisis de costes</li>
+                        <li class="mb-3"><i class="fa fa-check text-success mr-2"></i> Multiusuario</li>
+                    </ul>
+                    <a href="{% url 'suscripciones' %}" class="btn btn-dark btn-block py-3 rounded-pill font-weight-bold">SELECCIONAR PREMIUM</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .animate-fadeIn { animation: fadeInUp 0.8s ease-out; }
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Glassmorphism */
+    .hero-card, .pricing-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 25px;
+    }
+
+    /* Badges de estado */
+    .status-badge {
+        background: #f0f4f8;
+        color: #003366;
+        padding: 8px 18px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        border: 1px solid #d1d9e6;
+    }
+
+    /* Plan popular */
+    .popular-plan {
+        background: linear-gradient(135deg, #003366 0%, #001a33 100%) !important;
+        transform: scale(1.05);
+        z-index: 2;
+    }
+
+    .pricing-card { transition: all 0.3s ease; }
+    .pricing-card:not(.popular-plan):hover { transform: translateY(-10px); }
+    .popular-plan:hover { transform: scale(1.05) translateY(-10px); }
+
+    .hero-btn { border-radius: 15px; background: #003366; border: none; transition: 0.3s; }
+    .hero-btn:hover { background: #002244; transform: scale(1.02); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+</style>
+{% endblock %}

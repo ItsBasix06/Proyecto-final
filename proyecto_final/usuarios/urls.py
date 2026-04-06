@@ -9,8 +9,7 @@ urlpatterns = [
     path('', v.index, name="index"),
     path('registro-arquitecto/', v.registro_arquitecto, name="registro-arquitecto"),
     path('quienes-somos/', v.quienes_somos, name='quienes-somos'),
-    path('index-arquitecto/', v.index, name="index-arquitecto"),
-    path('index-cliente/', v.index, name="index-cliente"),
     path('suscripciones/', vs.contratar_suscripcion, name="suscripciones"),
-    path('suscripcion-exitosa/', vs.contratar_suscripcion, name="suscripcion-exitosa")
+    path('suscripcion-exitosa/', vs.contratar_suscripcion, name="suscripcion-exitosa"),
+    path('mi-arquitecto/', v.info_arquitecto, name='mi-arquitecto'),
 ]
