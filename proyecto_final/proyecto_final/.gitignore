@@ -1,0 +1,18 @@
+# Entorno virtual de Python
+env/
+venv/
+ENV/
+target/
+
+# Archivos compilados del lenguaje
+*.pyc
+__pycache__/
+
+# Base de datos local (evita subir tus datos de prueba)
+db.sqlite3
+
+# Archivos temporales del sistema y de editores
+.DS_Store
+.vscode/
+.idea/
+*.log

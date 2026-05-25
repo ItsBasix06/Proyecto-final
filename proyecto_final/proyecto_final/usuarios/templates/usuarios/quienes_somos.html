@@ -1,0 +1,130 @@
+{% extends "usuarios/base.html" %}
+{% load static %}
+
+{% block title %}Quiénes Somos - ArquiData{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/quienes-somos.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="row tm-content-row tm-mt-big">
+        <div class="col-12 tm-col">
+            <div class="tm-block tm-block-h-auto" data-aos="fade-up">
+                <h2 class="tm-block-title">Nuestra Historia y Misión</h2>
+                <div class="row mt-4 align-items-center">
+                    <div class="col-lg-7">
+                        <p>
+                            En ArquiData, creemos que la arquitectura es un arte que no debe verse frenado por
+                            la burocracia.
+                            Fundada en 2024, nuestra plataforma nació como respuesta a una necesidad clara que
+                            detectamos en el sector:
+                            <b>la desconexión entre el diseño creativo y la gestión administrativa.</b>
+                        </p>
+                        <p>
+                            Comenzamos observando cómo grandes estudios perdían horas valiosas buscando la
+                            última versión de un plano
+                            o intentando coordinar cambios con ingenieros y clientes a través de correos
+                            electrónicos dispersos.
+                            Decidimos crear un entorno donde la <strong>centralización</strong> fuera la norma.
+                        </p>
+                        <blockquote class="blockquote border-left pl-4"
+                            style="border-left: 5px solid #003366; color: #003366; font-style: italic;">
+                            "Transformamos la complejidad administrativa en simplicidad visual, para que tú
+                            puedas dedicarte a lo que mejor sabes hacer: diseñar."
+                        </blockquote>
+                        <p>
+                            Hoy, ayudamos a cientos de estudios a optimizar sus flujos de trabajo, garantizando
+                            seguridad,
+                            rapidez y accesibilidad desde cualquier dispositivo, ya sea en la oficina o a pie de
+                            obra.
+                        </p>
+                    </div>
+
+                    <div class="col-lg-5 text-center position-relative">
+                        <div class="team-blob"></div>
+                        <img src="{% static 'img/basi-david-javi.png' %}" alt="Equipo Fundador ArquiData"
+                            class="img-fluid hero-team-img" data-aos="fade-left">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row tm-content-row">
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-col">
+            <div class="tm-block tm-block-h-auto text-center" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-rocket fa-4x mb-4" style="color: #003366;"></i>
+                <h3 class="mb-3">Eficiencia</h3>
+                <p>Reducimos los tiempos de gestión administrativa hasta en un 40%, permitiendo una búsqueda y
+                    organización instantánea de archivos CAD y PDF.</p>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-col">
+            <div class="tm-block tm-block-h-auto text-center" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-lock fa-4x mb-4" style="color: #003366;"></i>
+                <h3 class="mb-3">Seguridad</h3>
+                <p>Implementamos encriptación avanzada para proteger la propiedad intelectual de tus planos y
+                    los datos sensibles de tus clientes.</p>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-col">
+            <div class="tm-block tm-block-h-auto text-center" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-sync-alt fa-4x mb-4" style="color: #003366;"></i>
+                <h3 class="mb-3">Sincronización</h3>
+                <p>Tus datos actualizados en tiempo real. Accede a la última versión del proyecto desde tu
+                    móvil, tablet o escritorio sin conflictos.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row tm-content-row">
+        <div class="col-12 tm-col">
+            <div class="tm-block tm-block-h-auto" data-aos="fade-up">
+                <h2 class="tm-block-title mb-5">Líderes del Proyecto</h2>
+                <div class="row text-center">
+
+                    <div class="col-md-4 mb-4">
+                        <div class="mb-4 d-flex justify-content-center">
+                            <div style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 4px solid #003366;">
+                                <img src="{% static 'img/javi.png' %}" alt="CEO"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </div>
+                        <h4>Javier Gómez-Comino</h4>
+                        <p class="text-muted">CEO & Fundador</p>
+                        <p>Arquitecto con 15 años de experiencia, visionario detrás de la estructura lógica de
+                            ArquiData.</p>
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <div class="mb-4 d-flex justify-content-center">
+                            <div style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 4px solid #003366;">
+                                <img src="{% static 'img/david.png' %}" alt="CTO"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </div>
+                        <h4>David Nieto</h4>
+                        <p class="text-muted">Director de Tecnología</p>
+                        <p>Ingeniero de software especializada en seguridad en la nube y sistemas distribuidos.</p>
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <div class="mb-4 d-flex justify-content-center">
+                            <div style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 4px solid #003366;">
+                                <img src="{% static 'img/basi.png' %}" alt="Product"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </div>
+                        <h4>Basi Córdoba</h4>
+                        <p class="text-muted">Jefe de Producto</p>
+                        <p>Experto en UX/UI, encargado de que la plataforma sea intuitiva para arquitectos no técnicos.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

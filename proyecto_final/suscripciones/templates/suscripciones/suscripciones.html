@@ -1,0 +1,242 @@
+{% extends 'usuarios/base_cliente.html' %}
+
+{% block title %}Planes de Suscripción - ArquiData{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-5 animate-fadeIn">
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <h1 class="display-4 font-weight-bold" style="color: #ffffff; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);">Eleva tu experiencia</h1>
+            <p class="lead" style="color: #e0e0e0; font-weight: 400;">Selecciona el plan que mejor se adapte a las necesidades de tu estudio.</p>
+            <div class="mx-auto mt-3" style="width: 80px; height: 5px; background: #f39c12; border-radius: 10px; box-shadow: 0 0 15px rgba(243,156,18,0.5);"></div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center align-items-stretch px-lg-5">
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 custom-card">
+                <div class="card-body p-5 d-flex flex-column text-center">
+                    <div class="icon-box mb-4">
+                        <i class="fas fa-paper-plane fa-2x" style="color: #003366;"></i>
+                    </div>
+                    <h3 class="font-weight-bold text-dark">Básico</h3>
+                    <div class="price-tag my-3">
+                        <span class="currency">€</span><span class="amount">9.99</span><span class="period">/mes</span>
+                    </div>
+                    
+                    <ul class="feature-list list-unstyled mb-5 text-left">
+                        <li><i class="fas fa-check-circle mr-2 text-success"></i> 1 Proyecto activo</li>
+                        <li><i class="fas fa-check-circle mr-2 text-success"></i> Gestión de planos básica</li>
+                        <li><i class="fas fa-check-circle mr-2 text-success"></i> Soporte por Email</li>
+                    </ul>
+
+                    <form method="POST" class="mt-auto">
+                        {% csrf_token %}
+                        <input type="hidden" name="tipo_plan" value="Basico">
+                        <button type="submit" class="btn btn-outline-primary btn-block btn-custom-outline">
+                            SELECCIONAR BÁSICO
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 custom-card featured-card">
+                <div class="card-body p-5 d-flex flex-column text-center">
+                    <div class="ribbon"><span>POPULAR</span></div>
+                    <div class="icon-box mb-4 bg-white-transparent">
+                        <i class="fas fa-rocket fa-2x text-white"></i>
+                    </div>
+                    <h3 class="font-weight-bold text-white">Estándar</h3>
+                    <div class="price-tag my-3 text-white">
+                        <span class="currency">€</span><span class="amount">19.99</span><span class="period">/mes</span>
+                    </div>
+                    
+                    <ul class="feature-list list-unstyled mb-5 text-left text-white-50">
+                        <li><i class="fas fa-check-circle mr-2 text-warning"></i> 10 Proyectos activos</li>
+                        <li><i class="fas fa-check-circle mr-2 text-warning"></i> Almacenamiento ampliado</li>
+                        <li><i class="fas fa-check-circle mr-2 text-warning"></i> Informes personalizados</li>
+                        <li><i class="fas fa-check-circle mr-2 text-warning"></i> Soporte Prioritario</li>
+                    </ul>
+
+                    <form method="POST" class="mt-auto">
+                        {% csrf_token %}
+                        <input type="hidden" name="tipo_plan" value="Estandar">
+                        <button type="submit" class="btn btn-light btn-block btn-custom-white shadow-lg">
+                            ¡EMPEZAR AHORA!
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 custom-card">
+                <div class="card-body p-5 d-flex flex-column text-center">
+                    <div class="icon-box mb-4">
+                        <i class="fas fa-crown fa-2x text-warning"></i>
+                    </div>
+                    <h3 class="font-weight-bold text-dark">Premium</h3>
+                    <div class="price-tag my-3">
+                        <span class="currency">€</span><span class="amount">29.99</span><span class="period">/mes</span>
+                    </div>
+                    
+                    <ul class="feature-list list-unstyled mb-5 text-left">
+                        <li><i class="fas fa-check-circle mr-2 text-success"></i> Proyectos ilimitados</li>
+                        <li><i class="fas fa-check-circle mr-2 text-success"></i> Análisis de costes</li>
+                        <li><i class="fas fa-check-circle mr-2 text-success"></i> Multiusuario</li>
+                        <li><i class="fas fa-check-circle mr-2 text-success"></i> Consultoría Técnica</li>
+                    </ul>
+
+                    <form method="POST" class="mt-auto">
+                        {% csrf_token %}
+                        <input type="hidden" name="tipo_plan" value="Premium">
+                        <button type="submit" class="btn btn-dark btn-block btn-custom-dark">
+                            SELECCIONAR PREMIUM
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <a href="{% url 'index' %}" class="back-link">
+                <i class="fas fa-chevron-left mr-2"></i>Volver al panel principal
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Estilos de Tarjetas */
+    .custom-card {
+        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+
+    .featured-card {
+        background: linear-gradient(145deg, #003366 0%, #001a33 100%);
+        transform: scale(1.08);
+        z-index: 2;
+        box-shadow: 0 25px 50px rgba(0, 51, 102, 0.4);
+    }
+
+    .custom-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+    }
+
+    .featured-card:hover {
+        transform: scale(1.1) translateY(-15px);
+    }
+
+    /* Iconos */
+    .icon-box {
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+        margin: 0 auto;
+        background: #f8f9fa;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bg-white-transparent {
+        background: rgba(255,255,255,0.1);
+    }
+
+    /* Precios */
+    .price-tag {
+        font-weight: 800;
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+    }
+    .amount { font-size: 3rem; letter-spacing: -1px; }
+    .currency { font-size: 1.5rem; margin-right: 2px; }
+    .period { font-size: 1rem; opacity: 0.6; }
+
+    /* Listas */
+    .feature-list li {
+        padding: 8px 0;
+        font-size: 0.95rem;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .featured-card .feature-list li {
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Botones */
+    .btn-custom-outline {
+        border-radius: 12px;
+        padding: 12px;
+        border: 2px solid #003366;
+        color: #003366;
+        font-weight: 700;
+    }
+    .btn-custom-white {
+        border-radius: 12px;
+        padding: 12px;
+        background: white;
+        color: #003366;
+        font-weight: 800;
+        border: none;
+    }
+    .btn-custom-dark {
+        border-radius: 12px;
+        padding: 12px;
+        background: #222;
+        border: none;
+        font-weight: 700;
+    }
+
+    /* Ribbon / Etiqueta Popular */
+    .ribbon {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+    }
+    .ribbon span {
+        position: absolute;
+        display: block;
+        width: 150px;
+        padding: 8px 0;
+        background-color: #f39c12;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        color: #fff;
+        font-weight: 700;
+        font-size: 10px;
+        text-align: center;
+        transform: rotate(45deg) translate(25px, -15px);
+    }
+
+    .back-link {
+        color: white;
+        opacity: 0.7;
+        transition: 0.3s;
+        text-decoration: none;
+    }
+    .back-link:hover {
+        opacity: 1;
+        color: #f39c12;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+{% endblock %}

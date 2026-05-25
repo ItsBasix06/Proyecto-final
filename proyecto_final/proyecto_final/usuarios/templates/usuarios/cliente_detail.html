@@ -1,0 +1,123 @@
+{% extends 'usuarios/base_arquitecto.html' %}
+
+{% block title %}Detalle de Cliente - ArquiData{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    <div class="mb-4">
+        <a href="{% url 'lista_clientes' %}"
+            class="btn btn-light btn-sm rounded-3 px-3 border shadow-sm text-secondary">
+            <i class="bi bi-arrow-left me-1"></i> Volver al listado
+        </a>
+    </div>
+
+    <div class="card shadow-sm border-0 rounded-4 overflow-hidden mb-5">
+        <div class="card-body p-4">
+            <div class="row align-items-center">
+                <div class="col-md-auto text-center mb-3 mb-md-0">
+                    <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center fw-bold fs-2 shadow-sm mx-auto"
+                        style="width: 80px; height: 80px;">
+                        {{ cliente.user.first_name|default:cliente.user.username|slice:":1"|upper }}
+                    </div>
+                </div>
+                <div class="col text-center text-md-start">
+                    <h3 class="fw-bold text-dark mb-1">{{ cliente.user.get_full_name|default:cliente.user.username }}
+                    </h3>
+                    <p class="text-muted mb-2">@{{ cliente.user.username }} | NIF: <span
+                            class="font-monospace fw-bold">{{ cliente.pk }}</span></p>
+
+                    {% if cliente.tiene_suscripcion_activa %}
+                    <span
+                        class="badge bg-success-subtle text-success border border-success border-opacity-25 rounded-pill px-3 py-2 fw-medium">
+                        <i class="bi bi-check-circle-fill me-1"></i> Suscripción Activa
+                    </span>
+                    {% else %}
+                    <span
+                        class="badge bg-danger-subtle text-danger border border-danger border-opacity-25 rounded-pill px-3 py-2 fw-medium">
+                        <i class="bi bi-lock-fill me-1"></i> Sin Suscripción Activa
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <hr class="my-4 text-muted opacity-25">
+
+            <div class="row g-4">
+                <div class="col-sm-6 col-md-3">
+                    <label class="text-uppercase text-secondary font-monospace small d-block mb-1"
+                        style="letter-spacing: 0.5px;">Correo Electrónico</label>
+                    <span class="text-dark fw-medium d-block text-truncate">{{ cliente.correo_electronico }}</span>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <label class="text-uppercase text-secondary font-monospace small d-block mb-1"
+                        style="letter-spacing: 0.5px;">Teléfono</label>
+                    <span class="text-dark fw-medium d-block">{{ cliente.telefono|default:"No registrado" }}</span>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <label class="text-uppercase text-secondary font-monospace small d-block mb-1"
+                        style="letter-spacing: 0.5px;">Empresa</label>
+                    <span class="text-dark fw-medium d-block">{{ cliente.nom_empresa|default:"Particular" }}</span>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <label class="text-uppercase text-secondary font-monospace small d-block mb-1"
+                        style="letter-spacing: 0.5px;">Cuenta Bancaria</label>
+                    <span class="text-dark fw-medium d-block text-truncate">ES************{{ cliente.cuenta_bancaria|slice:"-4:"|default:"No registrada" }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h4 class="fw-bold text-dark mb-3"><i class="bi bi-folder2-open me-2 text-primary"></i>Planos y Proyectos de este
+        Cliente</h4>
+
+    <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="bg-light text-secondary text-uppercase font-monospace small"
+                    style="letter-spacing: 0.5px;">
+                    <tr>
+                        <th class="ps-4 py-3">ID Plano</th>
+                        <th class="py-3">Nombre del Plano</th>
+                        <th class="py-3 text-center">Estado</th>
+                        <th class="pe-4 py-3 text-end">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="border-top-0">
+                    {% for plano in planos %}
+                    <tr>
+                        <td class="ps-4 py-3 font-monospace fw-bold text-secondary">#{{ plano.id_plano }}</td>
+
+                        <td class="py-3 fw-medium text-dark">{{ plano.nombre_proyecto|default:"Plano sin nombre" }}</td>
+
+                        <td class="py-3 text-center">
+                            <span class="badge bg-secondary rounded-pill px-3 py-1">
+                                {% if plano.get_estado_display %}
+                                {{ plano.get_estado_display }}
+                                {% else %}
+                                {{ plano.estado }}
+                                {% endif %}
+                            </span>
+                        </td>
+
+                        <td class="pe-4 py-3 text-end">
+                            <a href="{% url 'plano_arquitecto_info' plano.id_plano %}"
+                                class="btn btn-outline-primary btn-sm px-3 rounded-3" title="Gestionar este plano">
+                                <i class="bi bi-gear-fill"></i> Gestionar
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center py-5 text-muted">
+                            <i class="bi bi-file-earmark-diff display-4 text-secondary d-block mb-2"></i>
+                            <p class="mb-0 small">Este cliente aún no ha solicitado ningún plano en la plataforma.</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
