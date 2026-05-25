@@ -1,0 +1,84 @@
+{% extends 'usuarios/base_cliente.html' %}
+
+{% block title %}Solicitar Nuevo Cálculo de Plano{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+
+            <div class="mb-4">
+                <a href="{% url 'planos_clientes' %}" class="text-decoration-none text-muted fw-medium">
+                    <i class="bi bi-arrow-left"></i> Cancelar y volver
+                </a>
+            </div>
+
+            <div class="card shadow border-0 rounded-4">
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <div class="bg-primary text-white rounded-circle p-3 d-inline-block mb-3 shadow-sm"
+                            style="width: 60px; height: 60px;">
+                            <i class="bi bi-file-earmark-plus fs-3" style="line-height: 1;"></i>
+                        </div>
+                        <h3 class="fw-bold text-dark">Nueva Solicitud Técnica</h3>
+                        <p class="text-muted small">Rellena las dimensiones. Tu arquitecto asignado ({{
+                            request.user.perfil_cliente.arquitecto.nombre }}) recibirá el aviso inmediatamente.</p>
+                    </div>
+
+                    {% if form.archivo.errors %}
+                    <div class="text-danger small mt-1">{{ form.archivo.errors.0 }}</div>
+                    {% endif %}
+
+                    <form method="POST" enctype="multipart/form-data" novalidate>
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold text-secondary small">Nombre o Identificador del
+                                Plano</label>
+                            {{ form.titulo }}
+                            {% if form.titulo.errors %}
+                            <div class="text-danger small mt-1">{{ form.titulo.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-sm-6">
+                                <label class="form-label fw-semibold text-secondary small">Superficie Total (m²)</label>
+                                {{ form.tamano }}
+                                {% if form.tamano.errors %}
+                                <div class="text-danger small mt-1">{{ form.tamano.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label fw-semibold text-secondary small">Formato de Entrega</label>
+                                {{ form.formato }}
+                                {% if form.formato.errors %}
+                                <div class="text-danger small mt-1">{{ form.formato.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold text-secondary small">Adjuntar Croquis Inicial /
+                                Instrucciones (Opcional)</label>
+                            {{ form.archivo }}
+                            <div class="form-text text-muted xsmall">Formatos admitidos: .pdf, .dwg, .zip</div>
+                            {% if form.archivo.errors %}
+                            <div class="text-danger small mt-1">{{ form.archivo.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg rounded-3 fw-bold shadow-sm py-2">
+                                <i class="bi bi-cloud-arrow-up-fill me-2"></i> Dar de Alta Solicitud
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
