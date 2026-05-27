@@ -1,8 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
 from django.db import transaction
-from .models import Suscripcion # Asegúrate de que la importación sea correcta
-from usuarios.models import Cliente # Asegúrate de que la importación sea correcta
+from .models import Suscripcion 
+from usuarios.models import Cliente 
 
 def contratar_suscripcion(request):
     cliente = get_object_or_404(Cliente, user=request.user)
@@ -14,7 +14,7 @@ def contratar_suscripcion(request):
             if suscripcion_existente:
                 with transaction.atomic():
                     suscripcion_existente.delete()
-                    # ¡SINCRONIZACIÓN!: Al eliminar el plan, bloqueamos las descargas
+                    # Al eliminar el plan, bloqueamos las descargas
                     cliente.tiene_suscripcion_activa = False
                     cliente.save()
                 
@@ -33,7 +33,7 @@ def contratar_suscripcion(request):
                         cliente=cliente,
                         defaults={'tipo_suscripcion': tipo, 'precio': precios[tipo]}
                     )
-                    # 2. ¡SINCRONIZACIÓN REAL!: Activamos la casilla del cliente en la BD
+                    # 2.  Activamos la casilla del cliente en la BD
                     cliente.tiene_suscripcion_activa = True
                     cliente.save()
                     
