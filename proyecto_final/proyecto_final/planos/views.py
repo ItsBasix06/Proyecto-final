@@ -6,10 +6,6 @@ from .models import Plano
 from usuarios.models import Arquitecto, Cliente
 from .forms import SolicitarPlanoForm
 
-# =========================================================================
-# INDEX DE CLIENTES
-# =========================================================================
-
 @login_required
 def planos_clientes_ver(request):
     """
