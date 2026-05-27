@@ -1,106 +1,147 @@
 {% extends 'usuarios/base_arquitecto.html' %}
+{% load static %}
 
-{% block title %}Gestión de Solicitud #{{ plano.id_plano }}{% endblock %}
+{% block title %}Gestión de Solicitud #{{ plano.id_plano }} - ArquiData{% endblock %}
 
 {% block content %}
-<div class="container my-5">
-    <div class="mb-4">
-        <a href="{% url 'planos_arquitectos' %}" class="text-decoration-none text-muted fw-medium">
-            <i class="bi bi-arrow-left"></i> Volver al listado de asignaciones
-        </a>
+<div class="container mt-5">
+    
+    <div class="row mb-4">
+        <div class="col-12">
+            <a href="{% url 'planos_arquitectos' %}" class="text-white opacity-75 text-uppercase small font-weight-bold" style="text-decoration: none; letter-spacing: 0.5px;">
+                <i class="fas fa-arrow-left mr-2"></i> Volver al listado de asignaciones
+            </a>
+        </div>
     </div>
 
-    <h2 class="fw-bold text-dark mb-4">Gestión Documental: Plano #{{ plano.id_plano }}</h2>
+    <div class="row tm-content-row mb-2">
+        <div class="col-12 tm-block-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                <h2 class="tm-block-title d-inline-block mb-0">Gestión Documental:</h2>
+                <span class="badge px-3 py-1 ml-2" style="background-color: #4e657a; color: #fff; font-family: monospace; font-size: 0.9rem;">
+                    Plano #{{ plano.id_plano }}
+                </span>
+            </div>
+        </div>
+    </div>
 
     {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show rounded-3" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endfor %}
+    <div class="row tm-content-row mb-2">
+        <div class="col-12 tm-block-col">
+            {% for message in messages %}
+                <div class="p-3 mb-3 text-white small d-flex justify-content-between align-items-center" 
+                     style="background-color: {% if 'success' in message.tags %}#2ecc71{% elif 'error' in message.tags or 'danger' in message.tags %}#e74c3c{% else %}#f5a623{% endif %}; border-radius: 0;">
+                    <span><i class="fas fa-info-circle mr-2"></i> {{ message }}</span>
+                    <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close" style="outline: none; background: transparent; border: none; opacity: 0.8;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
     {% endif %}
 
-    <div class="row g-4">
-        <div class="col-md-6">
-            <div class="card h-100 shadow-sm border-0 rounded-4">
-                <div class="card-header bg-transparent border-0 pt-4 px-4">
-                    <h5 class="fw-bold text-dark mb-0"><i class="bi bi-download text-primary me-2"></i>Descargar Base</h5>
-                </div>
-                <div class="card-body p-4">
-                    <div class="p-3 bg-light rounded-3 border mb-4">
-                        <span class="text-uppercase text-muted small d-block fw-bold mb-2">Ficha Fiscal del Cliente</span>
-                        <h5 class="fw-bold text-dark mb-1">{{ plano.cliente.nom_empresa }}</h5>
-                        <p class="text-muted small mb-0">NIF: <code>{{ plano.cliente.nif_cliente }}</code></p>
-                        <p class="text-muted small mb-0">Teléfono: {{ plano.cliente.telefono }} | Email: {{ plano.cliente.correo_electronico }}</p>
+    <div class="row tm-content-row align-items-stretch">
+        
+        <div class="col-12 col-md-6 tm-block-col mb-4">
+            <div class="tm-bg-primary-dark tm-block h-100 d-flex flex-column justify-content-between p-4">
+                <div>
+                    <h3 class="tm-block-title border-bottom pb-2" style="border-color: #4e657a !important;">
+                        <i class="fas fa-cloud-download-alt mr-2 text-muted"></i> Descargar Datos Base
+                    </h3>
+                    
+                    <div class="p-3 my-3 text-white small" style="background-color: #4e657a;">
+                        <span class="text-uppercase font-weight-bold d-block mb-1 text-muted" style="font-size: 0.7rem; color: #a1c4e6 !important;">Ficha Fiscal del Cliente</span>
+                        <h4 class="font-weight-bold mb-2" style="color: #f5a623; font-size: 1.1rem;">{{ plano.cliente.nom_empresa|default:"Particular" }}</h4>
+                        <p class="mb-1 opacity-75">NIF: <code class="text-white font-weight-bold">{{ plano.cliente.nif_cliente|default:plano.cliente.pk }}</code></p>
+                        <p class="mb-0 opacity-75">Teléfono: {{ plano.cliente.telefono|default:"No registrado" }} | Email: {{ plano.cliente.correo_electronico|default:plano.cliente.user.email }}</p>
                     </div>
 
-                    <ul class="list-group list-group-flush mb-4">
-                        <li class="list-group-item d-flex justify-content-between px-0 bg-transparent">
-                            <span class="text-muted">Especificación:</span>
-                            <span class="fw-bold text-dark">{{ plano.titulo }}</span>
+                    <ul class="list-unstyled mt-3 mb-4 text-white small">
+                        <li class="py-2 border-bottom d-flex justify-content-between" style="border-color: #4e657a !important;">
+                            <span class="opacity-75">Especificación / Título:</span>
+                            <b class="text-white">{{ plano.titulo }}</b>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between px-0 bg-transparent">
-                            <span class="text-muted">Superficie Total:</span>
-                            <span class="fw-bold text-dark">{{ plano.tamano }} m²</span>
+                        <li class="py-2 border-bottom d-flex justify-content-between" style="border-color: #4e657a !important;">
+                            <span class="opacity-75">Superficie Total:</span>
+                            <b class="text-white">{{ plano.tamano }} m²</b>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between px-0 bg-transparent">
-                            <span class="text-muted">Formato Solicitado:</span>
-                            <span class="fw-bold text-dark badge bg-dark text-white px-3">{{ plano.formato }}</span>
+                        <li class="py-2 d-flex justify-content-between">
+                            <span class="opacity-75">Formato Requerido:</span>
+                            <span class="badge px-3 py-1 font-weight-bold text-uppercase" style="background-color: #4e657a; color: #fff;">{{ plano.formato }}</span>
                         </li>
                     </ul>
+                </div>
 
+                <div class="mt-auto">
                     {% if plano.archivo %}
-                        <div class="d-grid">
-                            <a href="{{ plano.archivo.url }}" class="btn btn-primary btn-lg shadow-sm rounded-3 py-3" download>
-                                <i class="bi bi-file-earmark-arrow-down-fill me-2"></i> Descargar Documento Cliente
-                            </a>
-                        </div>
+                        <a href="{{ plano.archivo.url }}" class="btn btn-primary btn-block text-uppercase font-weight-bold py-3" style="background-color: #4e657a; border: 1px solid #6f8299; color: #fff; font-size: 0.9rem;" download>
+                            <i class="fas fa-file-download mr-2"></i> Descargar Documento Cliente
+                        </a>
                     {% else %}
-                        <div class="alert alert-warning border rounded-3 mb-0" role="alert">
-                            <i class="bi bi-exclamation-triangle-fill me-2"></i> El cliente todavía no ha adjuntado ningún croquis o archivo base.
+                        <div class="p-3 text-center text-white small" style="background-color: rgba(245, 166, 35, 0.1); border: 1px solid #f5a623;">
+                            <i class="fas fa-exclamation-triangle mr-2" style="color: #f5a623;"></i> El cliente todavía no ha adjuntado ningún croquis o archivo base.
                         </div>
                     {% endif %}
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="card h-100 shadow-sm border-0 rounded-4">
-                <div class="card-header bg-transparent border-0 pt-4 px-4">
-                    <h5 class="fw-bold text-dark mb-0"><i class="bi bi-cloud-arrow-up text-success me-2"></i>Subir Cálculo Final</h5>
-                </div>
-                <div class="card-body p-4 d-flex flex-column justify-content-between">
-                    <div>
-                        <p class="text-muted small mb-4">Una vez resuelto el cálculo estructural en tu software de diseño técnico local, realiza el volcado del archivo definitivo aquí. Esto actualizará el estado del plano de forma automática.</p>
-                        
-                        {% if plano.archivo_procesado %}
-                            <div class="p-3 bg-success-subtle border border-success border-opacity-25 rounded-3 d-flex align-items-center mb-4">
-                                <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
-                                <div>
-                                    <span class="d-block fw-bold text-success-emphasis">Entrega ya realizada</span>
-                                    <small class="text-success-emphasis">Estado: Disponible para el cliente (Sujeto a plan)</small>
-                                </div>
-                                <a href="{{ plano.archivo_procesado.url }}" class="btn btn-sm btn-success ms-auto rounded-2" download>
-                                    <i class="bi bi-download"></i>
-                                </a>
+        <div class="col-12 col-md-6 tm-block-col mb-4">
+            <div class="tm-bg-primary-dark tm-block h-100 d-flex flex-column justify-content-between p-4">
+                <div>
+                    <h3 class="tm-block-title border-bottom pb-2" style="border-color: #4e657a !important;">
+                        <i class="fas fa-cloud-upload-alt mr-2 text-muted"></i> Subir Cálculo Final
+                    </h3>
+                    
+                    <p class="text-white opacity-75 small my-3" style="line-height: 1.6;">
+                        Una vez resuelto el cálculo estructural en tu software de diseño técnico local, realiza el volcado del archivo definitivo aquí. Esto actualizará el estado del plano de forma automática a listo para su descarga.
+                    </p>
+                    
+                    {% if plano.archivo_procesado %}
+                        <div class="p-3 mb-4 d-flex align-items-center justify-content-between" style="background-color: rgba(46, 204, 113, 0.1); border: 1px solid #2ecc71;">
+                            <div class="mr-2 text-white small">
+                                <span class="d-block font-weight-bold" style="color: #2ecc71;"><i class="fas fa-check-circle mr-2"></i>Entrega ya realizada</span>
+                                <small class="text-white opacity-50 d-block mt-1">Estado: Disponible en panel del cliente (Sujeto a suscripción comercial)</small>
                             </div>
-                        {% endif %}
-                    </div>
-
-                    <form method="POST" enctype="multipart/form-data" class="mt-auto">
-                        {% csrf_token %}
-                        <div class="mb-4">
-                            <label for="id_archivo_tecnico" class="form-label fw-semibold text-secondary small">Adjuntar archivo final procesado (.dwg, .pdf)</label>
-                            <input class="form-control rounded-3 py-2" type="file" id="id_archivo_tecnico" name="archivo_tecnico" required>
+                            <a href="{{ plano.archivo_procesado.url }}" class="btn btn-sm text-uppercase px-3 font-weight-bold" style="background-color: #2ecc71; color: #fff; border: none;" download>
+                                <i class="fas fa-download"></i>
+                            </a>
                         </div>
-                        <button type="submit" name="subir_calculo" class="btn btn-success btn-lg w-100 rounded-3 py-2 fw-medium">
-                            <i class="bi bi-check-lg me-2"></i> Enviar Entrega Final
+                    {% endif %}
+                </div>
+
+                <div class="mt-auto tm-edit-product-form">
+                    <form method="POST" enctype="multipart/form-data" novalidate>
+                        {% csrf_token %}
+                        <div class="form-group mb-4">
+                            <label for="id_archivo_tecnico" class="text-white font-weight-bold small text-uppercase">Adjuntar archivo final procesado (.dwg, .pdf)</label>
+                            <input class="form-control-file text-white py-1" type="file" id="id_archivo_tecnico" name="archivo_tecnico" required>
+                        </div>
+                        <button type="submit" name="subir_calculo" class="btn btn-block text-uppercase font-weight-bold py-3" style="background-color: #f5a623; color: #1a252f; border: none; font-size: 0.9rem; letter-spacing: 0.5px;">
+                            <i class="fas fa-check mr-2"></i> Enviar Entrega Final
                         </button>
                     </form>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
+
+<style>
+    .tm-edit-product-form input[type="file"] {
+        display: block;
+        width: 100%;
+        background-color: #54657a !important;
+        color: #fff !important;
+        border: 1px solid #54657a !important;
+        padding: 10px 15px !important;
+        border-radius: 0 !important;
+    }
+    .tm-edit-product-form input[type="file"]:focus {
+        border-color: #f5a623 !important;
+        outline: 0;
+    }
+</style>
 {% endblock %}

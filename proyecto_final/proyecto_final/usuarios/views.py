@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User, Group
 from django.core.exceptions import PermissionDenied
-from .models import Cliente, Arquitecto, MensajeContacto
+from .models import Cliente, Arquitecto
 from suscripciones.models import Suscripcion
 from django.db import transaction
 from .forms import RegistroArquitectoForm, RegistroClienteForm, ClienteEditarForm
@@ -212,27 +212,69 @@ def logout_usuario(request):
     return redirect("login")
 
 def index(request):
+    # =========================================================================
+    # 1. USUARIOS AUTENTICADOS (LOGUEADOS)
+    # =========================================================================
     if request.user.is_authenticated:
-        # CASO CLIENTE
+        
+        # ---------------------------------------------------------------------
+        # CASO CLIENTE: Redirección interna hacia su panel de control
+        # ---------------------------------------------------------------------
         if hasattr(request.user, 'perfil_cliente'):
             cliente = request.user.perfil_cliente
+            
             # Buscamos la suscripción vinculada a este cliente
             suscripcion = Suscripcion.objects.filter(cliente=cliente).first()
             
+            # Conteo REAL de planos solicitados dinámicamente por este cliente concreto
+            planos_solicitados_count = Plano.objects.filter(cliente=cliente).count()
+            
             return render(request, "usuarios/index_cliente.html", {
                 'cliente': cliente,
-                'suscripcion': suscripcion  # <--- Enviamos la suscripción al HTML
+                'suscripcion': suscripcion,
+                'planos_solicitados_count': planos_solicitados_count  # Alimenta el contador del panel del cliente
             })
         
-        # CASO ARQUITECTO
+        # ---------------------------------------------------------------------
+        # CASO ARQUITECTO: Redirección interna hacia su panel de gestión técnica
+        # ---------------------------------------------------------------------
         if hasattr(request.user, 'perfil_arquitecto'):
+            arquitecto = request.user.perfil_arquitecto
+            
+            # Conteo de planos pendientes (excluyendo los que ya están listos)
+            planos_pendientes_count = Plano.objects.filter(arquitecto=arquitecto).exclude(estado='LISTO').count()
+            
+            # Conteo de clientes asignados a este arquitecto con suscripción activa
+            clientes_activos_count = Cliente.objects.filter(arquitecto=arquitecto, tiene_suscripcion_activa=True).count()
+            
+            # Historial rápido: Últimos 5 planos asignados ordenados por Clave Primaria (pk) desc
+            ultimos_planos = Plano.objects.filter(arquitecto=arquitecto).order_by('-pk')[:5]
+            
+            # Historial rápido: Últimos 5 clientes asignados ordenados por Clave Primaria (pk) desc
+            # NOTA: Usar '-pk' previene el error 'FieldError' si tu modelo Cliente no usa la columna id estándar
+            ultimos_clientes = Cliente.objects.filter(arquitecto=arquitecto).order_by('-pk')[:5]
+            
             return render(request, "usuarios/index_arquitecto.html", {
-                'arquitecto': request.user.perfil_arquitecto
+                'arquitecto': arquitecto,
+                'planos_pendientes_count': planos_pendientes_count,
+                'clientes_activos_count': clientes_activos_count,
+                'ultimos_planos': ultimos_planos,
+                'ultimos_clientes': ultimos_clientes
             })
-     
-    # Si no está autenticado
+            
+    # =========================================================================
+    # 2. USUARIOS ANÓNIMOS (Página de presentación pública / Landing Page)
+    # =========================================================================
     return render(request, "usuarios/index.html")
 
 def quienes_somos(request):
+    """
+    Renderiza la página pública de Quienes Somos de ArquiData.
+    """
     return render(request, 'usuarios/quienes_somos.html')
 
+def servicios(request):
+    """
+    Renderiza la página pública de servicios de ArquiData.
+    """
+    return render(request, "usuarios/servicios.html")

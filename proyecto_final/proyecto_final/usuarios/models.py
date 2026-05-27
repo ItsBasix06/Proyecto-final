@@ -38,13 +38,6 @@ class Cliente(models.Model):
         return f"Cliente: {self.nom_empresa} ({self.user.username if self.user else 'Sin User'})"
     
 
-# Esto no lo terminaré
-class MensajeContacto(models.Model):
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    arquitecto = models.ForeignKey(Arquitecto, on_delete=models.CASCADE)
-    asunto = models.CharField(max_length=200)
-    mensaje = models.TextField()
-    fecha_envio = models.DateTimeField(auto_now_add=True)
 
 # Cuando se elimine un Arquitecto, borra su User asociado
 @receiver(post_delete, sender=Arquitecto)

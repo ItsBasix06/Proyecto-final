@@ -1,71 +1,89 @@
 {% extends 'usuarios/base_cliente.html' %}
+{% load static %}
 
-{% block title %}Mis Planos Solicitados{% endblock %}
+{% block title %}Mis Planos Solicitados - ArquiData{% endblock %}
 
 {% block content %}
-<div class="container my-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="fw-bold text-dark m-0">Mis Planos Solicitados</h2>
-        <a href="{% url 'solicitar_plano' %}" class="btn btn-primary btn-lg shadow-sm rounded-3">
-            <i class="bi bi-plus-lg"></i> Solicitar Nuevo Plano
-        </a>
+<div class="container mt-5">
+    <div class="row tm-content-row">
+        <div class="col-12 tm-block-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto d-flex justify-content-between align-items-center flex-wrap">
+                <div class="mb-2">
+                    <h2 class="tm-block-title d-inline-block mb-0">Mis Planos Solicitados</h2>
+                    <p class="text-white opacity-75 mt-1 mb-0">Historial de encargos técnicos y estado de las revisiones de tu cuenta.</p>
+                </div>
+                <a href="{% url 'solicitar_plano' %}" class="btn btn-primary text-uppercase px-4 py-2" style="background-color: #f5a623; border: none; font-weight: 600; letter-spacing: 1px;">
+                    <i class="fas fa-plus mr-2"></i> Solicitar Nuevo Plano
+                </a>
+            </div>
+        </div>
     </div>
 
     {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tags }} alert-dismissible fade show rounded-3 shadow-sm" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% endfor %}
+        <div class="row mb-3">
+            <div class="col-12">
+                {% for message in messages %}
+                    <div class="alert alert-info alert-dismissible fade show" role="alert" style="background-color: #435c70; color: #fff; border: none;">
+                        {{ message }}
+                        <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     {% endif %}
 
-    <div class="card shadow-sm border-0 rounded-4">
-        <div class="card-body p-0">
-            <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0">
-                    <thead class="table-light text-uppercase fs-7 text-muted">
+    <div class="row tm-content-row">
+        <div class="col-12 tm-block-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
+                <h2 class="tm-block-title">Listado de Proyectos en la Plataforma</h2>
+                
+                <table class="table tm-table-small tm-product-table">
+                    <thead>
                         <tr>
-                            <th class="ps-4" style="width: 10%;">ID</th>
-                            <th style="width: 35%;">Nombre / Descripción</th>
-                            <th style="width: 25%;">Arquitecto Asignado</th>
-                            <th style="width: 15%;">Estado del Plano</th>
-                            <th class="text-end pe-4" style="width: 15%;">Acción</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">NOMBRE / DESCRIPCIÓN</th>
+                            <th scope="col">ARQUITECTO ASIGNADO</th>
+                            <th scope="col" class="text-center">ESTADO DEL PLANO</th>
+                            <th scope="col" class="text-center">ACCIÓN</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for plano in planos %}
                         <tr>
-                            <td class="ps-4 fw-semibold text-secondary">#{{ plano.id_plano }}</td>
+                            <td class="tm-product-name fw-semibold">#{{ plano.id_plano }}</td>
+                            
                             <td>
-                                <span class="fw-bold text-dark d-block">{{ plano.titulo }}</span>
-                                <small class="text-muted">Tamaño: {{ plano.tamano }} m² | Formato pedido: {{ plano.formato }}</small>
+                                <b class="text-white">{{ plano.titulo }}</b>
+                                <span class="d-block small text-muted mt-1">
+                                    Tamaño: {{ plano.tamano }} m² | Formato pedido: {{ plano.formato }}
+                                </span>
                             </td>
+                            
                             <td>
-                                <span class="fw-medium text-dark">
+                                <span class="text-white">
+                                    <i class="far fa-user mr-2 text-muted"></i>
                                     {% if plano.arquitecto.user.get_full_name %}
-                                    {{ plano.arquitecto.user.get_full_name }}
+                                        {{ plano.arquitecto.user.get_full_name }}
                                     {% else %}
-                                    {{ plano.arquitecto.user.username }}
+                                        {{ plano.arquitecto.user.username }}
                                     {% endif %}
                                 </span>
                             </td>
-                            <td>
+                            
+                            <td class="text-center">
                                 {% if plano.estado == 'LISTO' %}
-                                <span
-                                    class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-2 fw-semibold">
-                                    Listo para Descarga
-                                </span>
+                                    <div class="tm-status-circle moving"></div>
+                                    <span class="small text-white">Listo para Descarga</span>
                                 {% else %}
-                                <span
-                                    class="badge bg-warning-subtle text-warning border border-warning-subtle rounded-pill px-3 py-2 fw-semibold">
-                                    En Proceso
-                                </span>
+                                    <div class="tm-status-circle cancelled"></div>
+                                    <span class="small text-white">En Proceso</span>
                                 {% endif %}
                             </td>
-                            <td class="text-end pe-4">
-                                <a href="{% url 'plano_cliente_info' plano.id_plano %}"
-                                    class="btn btn-outline-primary btn-sm rounded-2 px-3 fw-medium">
+                            
+                            <td class="text-center">
+                                <a href="{% url 'plano_cliente_info' plano.id_plano %}" class="btn btn-sm text-uppercase px-3" style="background-color: #4e657a; color: #fff; border: none; font-weight: 500;">
                                     Ver Detalle
                                 </a>
                             </td>
@@ -73,13 +91,14 @@
                         {% empty %}
                         <tr>
                             <td colspan="5" class="text-center py-5 text-muted">
-                                <i class="bi bi-file-earmark-text display-4 d-block mb-3 opacity-50"></i>
-                                Aún no has solicitado ningún plano técnico.
+                                <i class="fas fa-file-invoice fa-3x d-block mb-3 opacity-50" style="color: #4e657a;"></i>
+                                Aún no has solicitado ningún plano técnico en tu cuenta corporativa.
                             </td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>

@@ -1,0 +1,109 @@
+{% extends 'usuarios/base.html' %}
+{% load static %}
+
+{% block title %}Nuestros Servicios - ArquiData{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/quienes-somos.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="row tm-content-row tm-mt-big">
+        <div class="col-12 tm-col">
+            <div class="tm-block tm-block-h-auto text-center" data-aos="fade-up">
+                <span class="badge px-3 py-2 mb-3 text-uppercase font-weight-bold" 
+                      style="background-color: rgba(0, 51, 102, 0.08); color: #003366; border-radius: 50px; font-size: 0.8rem; letter-spacing: 1px;">
+                    Qué Ofrecemos
+                </span>
+                <h2 class="tm-block-title mt-2 mb-3">Infraestructura Digital para Arquitectura e Ingeniería</h2>
+                <p class="mx-auto" style="max-width: 850px; font-size: 1.05rem; line-height: 1.6;">
+                    ArquiData proporciona un entorno centralizado y eficiente para el procesamiento, cálculo estructural y gestión documental de planos técnicos. Optimizamos la comunicación entre profesionales y clientes de forma transparente.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row tm-content-row">
+        
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-col">
+            <div class="tm-block tm-block-h-auto text-center d-flex flex-column h-100 justify-content-between" data-aos="fade-up" data-aos-delay="100">
+                <div>
+                    <i class="fas fa-layer-group fa-4x mb-4" style="color: #003366;"></i>
+                    <h3 class="mb-3">Gestión de Planos</h3>
+                    <p>Sube tus croquis, archivos base o esquemas conceptuales en formatos estándar (.pdf, .dwg) y mantén un historial organizado por expediente técnico de forma inmediata.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-col">
+            <div class="tm-block tm-block-h-auto text-center d-flex flex-column h-100 justify-content-between" data-aos="fade-up" data-aos-delay="200">
+                <div>
+                    <i class="fas fa-calculator fa-4x mb-4" style="color: #003366;"></i>
+                    <h3 class="mb-3">Cálculo Estructural</h3>
+                    <p>Asignación directa a arquitectos e ingenieros encargados de procesar cargas mecánicas, dimensiones y especificaciones técnicas normativas directamente sobre tus solicitudes.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-col">
+            <div class="tm-block tm-block-h-auto text-center d-flex flex-column h-100 justify-content-between" data-aos="fade-up" data-aos-delay="300">
+                <div>
+                    <i class="fas fa-cloud-download-alt fa-4x mb-4" style="color: #003366;"></i>
+                    <h3 class="mb-3">Descarga Segura</h3>
+                    <p>Accede a los entregables definitivos totalmente calculados desde tu panel privado una vez completado el procesamiento, respaldado por un sistema de control de suscripciones comerciales.</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="row tm-content-row">
+        <div class="col-12 tm-col">
+            <div class="tm-block tm-block-h-auto text-center" data-aos="fade-up">
+                <h3 class="mb-3 font-weight-bold tm-cta-text-title">¿Listo para digitalizar tus proyectos técnicos?</h3>
+                <p class="mx-auto mb-4 small" style="max-width: 650px; line-height: 1.6; color: inherit; opacity: 0.8;">
+                    Crea tu cuenta hoy mismo, selecciona el plan comercial que mejor se adapte al volumen de tu estudio y comienza a delegar el cálculo de tus infraestructuras de manera ágil.
+                </p>
+                <div class="mt-4">
+                    <a href="{% url 'registro-arquitecto' %}" class="btn px-4 py-2 font-weight-bold shadow-sm tm-btn-services-action">
+                        Comenzar Ahora <i class="fas fa-arrow-right ml-2" style="font-size: 0.75rem;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+<style>
+    /* Forzamos que los iconos cambien a blanco cuando se activa el modo oscuro a través de la clase global */
+    body.dark-mode .tm-content-row .fa-4x,
+    body.dark-mode .tm-content-row .badge {
+        color: #ffffff !important;
+        background-color: rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    /* Configuración del botón de acción adaptable */
+    .tm-btn-services-action {
+        background-color: #003366 !important;
+        color: #ffffff !important;
+        border-radius: 30px !important;
+        border: 1px solid transparent !important;
+        transition: all 0.3s ease;
+    }
+    .tm-btn-services-action:hover {
+        background-color: #002244 !important;
+        transform: translateY(-2px);
+    }
+
+    /* Adaptación del botón en modo oscuro */
+    body.dark-mode .tm-btn-services-action {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        color: #ffffff !important;
+    }
+    body.dark-mode .tm-btn-services-action:hover {
+        background-color: rgba(255, 255, 255, 0.2) !important;
+    }
+</style>
+{% endblock %}

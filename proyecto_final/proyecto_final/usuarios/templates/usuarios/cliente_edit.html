@@ -1,77 +1,113 @@
 {% extends 'usuarios/base_arquitecto.html' %}
+{% load static %}
 
 {% block title %}Editar Cliente - ArquiData{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <div class="mb-4">
-        <a href="{% url 'lista_clientes' %}" class="btn btn-light btn-sm rounded-3 px-3 border shadow-sm text-secondary">
-            <i class="bi bi-arrow-left me-1"></i> Volver al listado
-        </a>
+<div class="container mt-5">
+    
+    <div class="row mb-4">
+        <div class="col-12">
+            <a href="{% url 'lista_clientes' %}" class="text-white opacity-75 text-uppercase small font-weight-bold" style="text-decoration: none; letter-spacing: 0.5px;">
+                <i class="fas fa-arrow-left mr-2"></i> Volver al listado
+            </a>
+        </div>
     </div>
 
-    <div class="card shadow-sm border-0 rounded-4 overflow-hidden" style="max-width: 800px; margin: 0 auto;">
-        <div class="card-header bg-dark text-white p-4 border-0">
-            <div class="d-flex align-items-center">
-                <div class="bg-primary bg-opacity-10 text-primary rounded-3 p-2 me-3">
-                    <i class="bi bi-pencil-square fs-3"></i>
+    <div class="row tm-content-row justify-content-center">
+        <div class="col-12 col-lg-10 tm-block-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto p-4 p-md-5">
+                
+                <div class="row mb-4 border-bottom pb-3" style="border-color: #4e657a !important;">
+                    <div class="col-12 d-flex align-items-center">
+                        <div class="mr-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: #4e657a; border-radius: 8px;">
+                            <i class="fas fa-user-edit fa-lg" style="color: #f5a623;"></i>
+                        </div>
+                        <div>
+                            <h2 class="tm-block-title mb-0" style="font-size: 1.5rem;">Editar Ficha de Cliente</h2>
+                            <p class="text-white opacity-50 mb-0 small">Modificando los datos comerciales de: <span class="text-white font-weight-bold">@{{ cliente.user.username }}</span></p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <h4 class="mb-0 fw-bold">Editar Ficha de Cliente</h4>
-                    <p class="mb-0 text-secondary small">Modificando los datos comerciales de: <span class="text-white fw-medium">@{{ cliente.user.username }}</span></p>
+
+                <div class="tm-edit-product-form">
+                    <form method="POST" autocomplete="off" novalidate>
+                        {% csrf_token %}
+                        
+                        <div class="d-flex align-items-center mb-4 text-white opacity-75">
+                            <i class="fas fa-building mr-2" style="color: #4e657a;"></i>
+                            <h3 class="tm-block-title mb-0" style="font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px;">Información Corporativa y de Contacto</h3>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="form-group col-12 col-md-6 mb-4">
+                                <label for="id_nom_empresa" class="text-white font-weight-bold small text-uppercase">Nombre de la Empresa / Particular</label>
+                                {{ cliente_form.nom_empresa }}
+                            </div>
+
+                            <div class="form-group col-12 col-md-6 mb-4">
+                                <label for="id_telefono" class="text-white font-weight-bold small text-uppercase">Teléfono de Contacto</label>
+                                {{ cliente_form.telefono }}
+                            </div>
+
+                            <div class="form-group col-12 mb-4">
+                                <label for="id_correo_electronico" class="text-white font-weight-bold small text-uppercase">Correo Electrónico</label>
+                                {{ cliente_form.correo_electronico }}
+                                <small class="text-white opacity-50 d-block mt-2">Dirección oficial donde el cliente recibirá las notificaciones automáticas y alertas sobre sus planos.</small>
+                            </div>
+
+                            <div class="form-group col-12 mb-5">
+                                <label for="id_cuenta_bancaria" class="text-white font-weight-bold small text-uppercase">Cuenta Bancaria (IBAN)</label>
+                                {{ cliente_form.cuenta_bancaria }}
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end align-items-center flex-wrap mt-4 pt-4 border-top" style="border-color: #4e657a !important; gap: 15px;">
+                            <a href="{% url 'lista_clientes' %}" class="btn text-uppercase font-weight-bold py-2 px-4 text-white opacity-75 backend-btn-cancel" style="background-color: transparent; border: 1px solid #4e657a; font-size: 0.85rem;">
+                                Cancelar
+                            </a>
+                            <button type="submit" class="btn text-uppercase font-weight-bold py-2 px-5" style="background-color: #f5a623; color: #1a252f; border: none; font-size: 0.85rem; letter-spacing: 0.5px;">
+                                <i class="fas fa-save mr-2"></i> Confirmar Cambios
+                            </button>
+                        </div>
+                    </form>
                 </div>
+
             </div>
-        </div>
-
-        <div class="card-body p-4 p-md-5 bg-white">
-            <form method="POST" autocomplete="off">
-                {% csrf_token %}
-                
-                <div class="d-flex align-items-center mb-3">
-                    <i class="bi bi-building me-2 text-primary"></i>
-                    <h5 class="fw-bold text-dark mb-0">Información Corporativa y de Contacto</h5>
-                </div>
-                
-                <div class="row g-4 mb-4">
-                    <div class="col-md-6">
-                        <label class="form-label small fw-bold text-secondary text-uppercase">Nombre de la Empresa / Particular</label>
-                        {{ cliente_form.nom_empresa }}
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label small fw-bold text-secondary text-uppercase">Teléfono de contacto</label>
-                        {{ cliente_form.telefono }}
-                    </div>
-
-                    <div class="col-12">
-                        <label class="form-label small fw-bold text-secondary text-uppercase">Correo Electrónico</label>
-                        {{ cliente_form.correo_electronico }}
-                        <div class="form-text mt-1">Dirección oficial donde el cliente recibirá las notificaciones de los planos.</div>
-                    </div>
-
-                    <div class="col-12">
-                        <label class="form-label small fw-bold text-secondary text-uppercase">Cuenta Bancaria (IBAN)</label>
-                        {{ cliente_form.cuenta_bancaria }}
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-end gap-3 border-top pt-4 mt-5">
-                    <a href="{% url 'lista_clientes' %}" class="btn btn-outline-secondary rounded-pill px-4">
-                        Cancelar
-                    </a>
-                    <button type="submit" class="btn btn-primary rounded-pill px-5 fw-bold shadow">
-                        <i class="bi bi-check-lg me-1"></i> Confirmar cambios
-                    </button>
-                </div>
-            </form>
         </div>
     </div>
 </div>
 
 <style>
-    .form-control:focus, .form-select:focus {
-        border-color: #0d6efd;
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
+    /* Asegura que los inputs generados automáticamente por Django se ajusten al estilo Tooplate */
+    .tm-edit-product-form input[type="text"],
+    .tm-edit-product-form input[type="email"],
+    .tm-edit-product-form input[type="tel"],
+    .tm-edit-product-form select,
+    .tm-edit-product-form textarea {
+        display: block;
+        width: 100%;
+        background-color: #54657a !important;
+        color: #fff !important;
+        border: 1px solid #54657a !important;
+        padding: 10px 15px !important;
+        border-radius: 0 !important; /* Tooplate usa esquinas cuadradas en inputs */
+        transition: all 0.3s ease;
+    }
+    
+    .tm-edit-product-form input:focus,
+    .tm-edit-product-form select:focus,
+    .tm-edit-product-form textarea:focus {
+        background-color: #596c82 !important;
+        border-color: #f5a623 !important;
+        outline: 0;
+        box-shadow: none !important;
+    }
+
+    .backend-btn-cancel:hover {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        opacity: 1 !important;
+        text-decoration: none;
     }
 </style>
 {% endblock %}

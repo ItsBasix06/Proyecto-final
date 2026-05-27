@@ -1,4 +1,134 @@
-{% extends "usuarios/base_arquitecto.html" %}
+{% extends 'usuarios/base_arquitecto.html' %}
 {% load static %}
 
-{% block title %}Arquitecto - ArquiData{% endblock %}
+{% block title %}Inicio - Panel Técnico ArquiData{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row tm-content-row">
+        <div class="col-12 tm-block-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                <h2 class="tm-block-title d-inline-block">Bienvenido al Panel Técnico</h2>
+                <p class="text-white opacity-75">Control centralizado de planos asignados, supervisión de clientes corporativos y estados de entrega.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row tm-content-row mb-2">
+        <div class="col-sm-12 col-md-4 tm-block-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto text-center py-4">
+                <h3 class="tm-block-title mb-2">Planos Pendientes</h3>
+                <i class="fas fa-file-invoice fa-2x mb-3 text-warning" style="color: #f5a623 !important;"></i>
+                <p class="display-4 text-white font-weight-bold mb-0">
+                    {{ planos_pendientes_count|default:"0" }}
+                </p>
+                <a href="{% url 'planos_arquitectos' %}" class="btn btn-sm mt-3 text-uppercase" style="background-color: #4e657a; color: #fff; border: none;">Revisar bandeja</a>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-4 tm-block-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto text-center py-4">
+                <h3 class="tm-block-title mb-2">Clientes Activos</h3>
+                <i class="fas fa-users fa-2x mb-3 text-success" style="color: #2ecc71 !important;"></i>
+                <p class="display-4 text-white font-weight-bold mb-0">
+                    {{ clientes_activos_count|default:"0" }}
+                </p>
+                <a href="{% url 'lista_clientes' %}" class="btn btn-sm mt-3 text-uppercase" style="background-color: #4e657a; color: #fff; border: none;">Ver directorio</a>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-4 tm-block-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto text-center py-4">
+                <h3 class="tm-block-title mb-2">Acciones Rápidas</h3>
+                <div class="d-flex flex-column align-items-center justify-content-center pt-2">
+                    <a href="{% url 'registro-cliente' %}" class="btn btn-primary text-uppercase w-75 mb-2 py-2" style="background-color: #f5a623; border: none; font-weight: 600;">
+                        <i class="fas fa-user-plus mr-2"></i> Alta Cliente
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row tm-content-row">
+        
+        <div class="col-12 col-lg-7 tm-block-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="tm-block-title mb-0">Últimos Encargos Recibidos</h2>
+                    <a href="{% url 'planos_arquitectos' %}" class="small text-uppercase" style="color: #f5a623; font-weight: 600;">Ver todos</a>
+                </div>
+                
+                <table class="table tm-table-small tm-product-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">PROYECTO</th>
+                            <th scope="col" class="text-center">ESTADO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for plano in ultimos_planos %}
+                        <tr>
+                            <td class="tm-product-name">
+                                <b class="text-white">{{ plano.titulo }}</b>
+                                <span class="d-block small text-muted mt-1">{{ plano.cliente.nom_empresa }}</span>
+                            </td>
+                            <td class="text-center">
+                                {% if plano.estado == 'LISTO' %}
+                                    <div class="tm-status-circle moving"></div> <span class="small text-white">Listo</span>
+                                {% else %}
+                                    <div class="tm-status-circle cancelled"></div> <span class="small text-white">En proceso</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="2" class="text-center py-4 text-muted small">No hay encargos técnicos asignados.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-5 tm-block-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="tm-block-title mb-0">Clientes Vinculados</h2>
+                    <a href="{% url 'lista_clientes' %}" class="small text-uppercase" style="color: #f5a623; font-weight: 600;">Ver todos</a>
+                </div>
+
+                <table class="table tm-table-small tm-product-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="ps-2">EMPRESA</th>
+                            <th scope="col" class="text-center">SUSCRIPCIÓN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cliente in ultimos_clientes %}
+                        <tr>
+                            <td class="tm-product-name ps-2">
+                                <b class="text-white">{{ cliente.user.get_full_name|default:cliente.user.username }}</b>
+                                <span class="d-block small text-muted mt-1">@{{ cliente.user.username }}</span>
+                            </td>
+                            <td class="text-center">
+                                {% if cliente.tiene_suscripcion_activa %}
+                                    <span class="badge badge-success px-2 py-1" style="background-color: #2ecc71; color: #fff; font-size: 0.75rem;">ACTIVA</span>
+                                {% else %}
+                                    <span class="badge badge-danger px-2 py-1" style="background-color: #e74c3c; color: #fff; font-size: 0.75rem;">INACTIVA</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="2" class="text-center py-4 text-muted small">No tienes clientes registrados todavía.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
