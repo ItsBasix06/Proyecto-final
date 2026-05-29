@@ -17,6 +17,24 @@
     <link rel="stylesheet" href="{% static 'css/admin.css' %}">
 
     <link rel="shortcut icon" href="{% static 'img/logo-favicon.ico' %}" type="image/x-icon">
+
+    <style>
+
+        /* Anula las clases específicas de Bootstrap que pintan el texto de blanco */
+        .text-white,
+        .text-light {
+            color: #8892b0 !important;
+        }
+
+        /* Salvamos el footer para que mantenga sus textos legibles sobre fondo oscuro */
+        #footer,
+        #footer p,
+        #footer span,
+        #footer h4,
+        #footer a {
+            color: #ffffff !important;
+        }
+    </style>
 </head>
 
 <body id="reportsPage">
@@ -102,10 +120,60 @@
 
         {% block content %}{% endblock %}
 
-        <footer id="footer" class="footer position-relative mt-5">
+        <footer id="footer" class="footer position-relative">
             <div class="footer-top-border"></div>
-            <div class="container text-center py-4">
-                <p>© 2026 <strong>ArquiData</strong>. Transformando la gestión arquitectónica.</p>
+
+            <div class="container">
+                <div class="row gy-5">
+
+                    <div class="col-lg-4 col-md-12 footer-about">
+                        <a href="{% url 'index' %}" class="logo d-flex align-items-center mb-3">
+                            <span class="sitename">ArquiData</span>
+                        </a>
+                        <p>
+                            Transformamos la gestión arquitectónica. Seguridad, eficiencia y diseño unidos en una
+                            sola plataforma en la nube.
+                        </p>
+                        <div class="social-links d-flex mt-4">
+                            <ul class="wrapper social-custom-list">
+                                <li class="icon facebook">
+                                    <span class="tooltip">Facebook</span>
+                                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li class="icon twitter">
+                                    <span class="tooltip">Twitter</span>
+                                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                                </li>
+                                <li class="icon instagram">
+                                    <span class="tooltip">Instagram</span>
+                                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 footer-links">
+                        <h4>Explora</h4>
+                        <ul>
+                            <li><a href="{% url 'index' %}">Inicio</a></li>
+                            <li><a href="{% url 'planos_arquitectos' %}">Planos Asignados</a></li>
+                            <li><a href="{% url 'lista_clientes' %}">Clientes</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 footer-contact">
+                        <h4>Contacto</h4>
+                        <p>
+                            <strong><i class="fas fa-map-marker-alt mr-2"></i></strong> Avnd. Los Institutos S/N<br>
+                            Alcazar de San Juan, España
+                        </p>
+                        <p>
+                            <strong><i class="fas fa-phone mr-2"></i></strong> +34 666 66 66 66<br>
+                            <strong><i class="fas fa-envelope mr-2"></i></strong> info@arquidata.com
+                        </p>
+                    </div>
+
+                </div>
             </div>
         </footer>
     </div>
